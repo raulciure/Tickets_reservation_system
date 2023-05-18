@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tickets_reservation_system
+namespace Tickets_reservation_system.Graphical_User_Interface
 {
     internal static class Program
     {
