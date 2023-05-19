@@ -170,6 +170,7 @@
             // 
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
+            "0",
             "1",
             "2",
             "3",
