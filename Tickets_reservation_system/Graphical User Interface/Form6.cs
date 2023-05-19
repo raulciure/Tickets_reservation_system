@@ -19,8 +19,13 @@ namespace Tickets_reservation_system.Graphical_User_Interface
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = new Form7();
-            f.ShowDialog();
+            if ((textBox1.Text == "user") && (textBox2.Text == "pass"))
+            {
+                Form f = new Form7();
+                f.ShowDialog();
+            }
+            else
+                MessageBox.Show("Utilizator/Parola incorecte!");
 
         }
     }

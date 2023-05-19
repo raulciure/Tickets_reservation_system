@@ -16,5 +16,16 @@ namespace Tickets_reservation_system.Graphical_User_Interface
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("SAVED SUCCESSFUL!");
+            Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

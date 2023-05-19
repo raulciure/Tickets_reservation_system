@@ -31,7 +31,8 @@ namespace Tickets_reservation_system.Graphical_User_Interface
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("FLIGHT UPDATED SUCCESSFUL");
+            MessageBox.Show("FLIGHT REMOVED SUCCESSFUL!");
+            Application.Exit();
         }
     }
 }

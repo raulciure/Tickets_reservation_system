@@ -22,5 +22,10 @@ namespace Tickets_reservation_system.Graphical_User_Interface
             Form f = new Form4();
             f.ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

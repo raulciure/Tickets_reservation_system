@@ -37,7 +37,17 @@ namespace Tickets_reservation_system.Graphical_User_Interface
             else if(radioButton1.Checked == true)
             {
                 MessageBox.Show("BOOKING SUCCESSFUL!" + '\n'+ "YOU WILL RECEIVE A RESERVATION E-MAIL WITH ALL THE NECESSARY DATA!"+'\n'+"THANK YOU!");
-            }
+                Application.Exit();            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
