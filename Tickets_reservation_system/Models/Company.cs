@@ -19,8 +19,8 @@ namespace Tickets_reservation_system.Models
             this.countryOfRegistration = countryOfRegistration;
         }
 
-        public string Name { get; set; }
-        public List<Plane> Fleet { get; set; }
-        public string CountryOfRegistration { get; set; }
+        public string Name { get => this.name; set => this.name = value; }
+        public List<Plane> Fleet { get => this.fleet; set => this.fleet = value; }
+        public string CountryOfRegistration { get => this.countryOfRegistration; set => this.countryOfRegistration = value; }
     }
 }
