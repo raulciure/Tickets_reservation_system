@@ -27,7 +27,6 @@ namespace Tickets_reservation_system.Views
             }
             else
                 MessageBox.Show("Utilizator/Parola incorecte!");
-
         }
     }
 }
