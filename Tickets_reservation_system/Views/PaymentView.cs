@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form5 : Form
+    public partial class PaymentView : Form
     {
-        public Form5()
+        public PaymentView()
         {
             InitializeComponent();
         }

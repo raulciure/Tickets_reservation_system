@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form6 : Form
+    public partial class CompanyLoginView : Form
     {
-        public Form6()
+        public CompanyLoginView()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace Tickets_reservation_system.Graphical_User_Interface
         {
             if ((textBox1.Text == "user") && (textBox2.Text == "pass"))
             {
-                Form f = new Form7();
+                Form f = new ManageFlightView();
                 f.ShowDialog();
             }
             else

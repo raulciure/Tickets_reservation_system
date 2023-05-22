@@ -8,31 +8,34 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form7 : Form
+    public partial class WelcomePageView : Form
     {
-        public Form7()
+        public WelcomePageView()
         {
             InitializeComponent();
+        }
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = new Form8();
+            Form f = new SearchFlightView();
             f.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form f = new Form9();
+            Form f = new CompanyLoginView();
             f.ShowDialog();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("FLIGHT REMOVED SUCCESSFUL!");
-            Application.Exit();
-        }
-    }
+		private void pictureBox1_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

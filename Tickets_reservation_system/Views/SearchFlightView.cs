@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form2 : Form
+    public partial class SearchFlightView : Form
     {
-        public Form2()
+        public SearchFlightView()
         {
             InitializeComponent();
         }
@@ -48,7 +48,7 @@ namespace Tickets_reservation_system.Graphical_User_Interface
             }
             else
             {
-                Form f = new Form3();
+                Form f = new SelectFlightView();
                 f.ShowDialog();
             }
         }

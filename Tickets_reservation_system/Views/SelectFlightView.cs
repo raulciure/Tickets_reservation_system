@@ -8,18 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form3 : Form
+    public partial class SelectFlightView : Form
     {
-        public Form3()
+        public SelectFlightView()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = new Form4();
+            Form f = new ReserveFlightView();
             f.ShowDialog();
         }
 

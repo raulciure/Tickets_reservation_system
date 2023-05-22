@@ -46,93 +46,93 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Graphical User Interface\Form1.cs">
+    <Compile Include="Views\WelcomePageView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\WelcomePageView.Designer.cs">
+      <DependentUpon>WelcomePageView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form2.cs">
+    <Compile Include="Views\SearchFlightView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="Views\SearchFlightView.Designer.cs">
+      <DependentUpon>SearchFlightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form3.cs">
+    <Compile Include="Views\SelectFlightView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="Views\SelectFlightView.Designer.cs">
+      <DependentUpon>SelectFlightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form4.cs">
+    <Compile Include="Views\ReserveFlightView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form4.Designer.cs">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <Compile Include="Views\ReserveFlightView.Designer.cs">
+      <DependentUpon>ReserveFlightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form5.cs">
+    <Compile Include="Views\PaymentView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form5.Designer.cs">
-      <DependentUpon>Form5.cs</DependentUpon>
+    <Compile Include="Views\PaymentView.Designer.cs">
+      <DependentUpon>PaymentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form6.cs">
+    <Compile Include="Views\CompanyLoginView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form6.Designer.cs">
-      <DependentUpon>Form6.cs</DependentUpon>
+    <Compile Include="Views\CompanyLoginView.Designer.cs">
+      <DependentUpon>CompanyLoginView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form7.cs">
+    <Compile Include="Views\ManageFlightView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form7.Designer.cs">
-      <DependentUpon>Form7.cs</DependentUpon>
+    <Compile Include="Views\ManageFlightView.Designer.cs">
+      <DependentUpon>ManageFlightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form8.cs">
+    <Compile Include="Views\AddFlightView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form8.Designer.cs">
-      <DependentUpon>Form8.cs</DependentUpon>
+    <Compile Include="Views\AddFlightView.Designer.cs">
+      <DependentUpon>AddFlightView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Graphical User Interface\Form9.cs">
+    <Compile Include="Views\UpdateFlightView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Graphical User Interface\Form9.Designer.cs">
-      <DependentUpon>Form9.cs</DependentUpon>
+    <Compile Include="Views\UpdateFlightView.Designer.cs">
+      <DependentUpon>UpdateFlightView.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Passanger.cs" />
     <Compile Include="Models\Plane.cs" />
     <Compile Include="Models\Ticket.cs" />
-    <Compile Include="Graphical User Interface\Program.cs" />
+    <Compile Include="Views\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Graphical User Interface\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Views\WelcomePageView.resx">
+      <DependentUpon>WelcomePageView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="Views\SearchFlightView.resx">
+      <DependentUpon>SearchFlightView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="Views\SelectFlightView.resx">
+      <DependentUpon>SelectFlightView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form4.resx">
-      <DependentUpon>Form4.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ReserveFlightView.resx">
+      <DependentUpon>ReserveFlightView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form5.resx">
-      <DependentUpon>Form5.cs</DependentUpon>
+    <EmbeddedResource Include="Views\PaymentView.resx">
+      <DependentUpon>PaymentView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form6.resx">
-      <DependentUpon>Form6.cs</DependentUpon>
+    <EmbeddedResource Include="Views\CompanyLoginView.resx">
+      <DependentUpon>CompanyLoginView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form7.resx">
-      <DependentUpon>Form7.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ManageFlightView.resx">
+      <DependentUpon>ManageFlightView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form8.resx">
-      <DependentUpon>Form8.cs</DependentUpon>
+    <EmbeddedResource Include="Views\AddFlightView.resx">
+      <DependentUpon>AddFlightView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Graphical User Interface\Form9.resx">
-      <DependentUpon>Form9.cs</DependentUpon>
+    <EmbeddedResource Include="Views\UpdateFlightView.resx">
+      <DependentUpon>UpdateFlightView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -8,20 +8,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form8 : Form
+    public partial class UpdateFlightView : Form
     {
-        public Form8()
+        public UpdateFlightView()
         {
             InitializeComponent();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,7 +43,7 @@ namespace Tickets_reservation_system.Graphical_User_Interface
                 textBox1.Focus();
                 return;
             }
-            else  if (!Regex.Match(textBox6.Text, "^[0-9]*$").Success)
+            else if (!Regex.Match(textBox6.Text, "^[0-9]*$").Success)
             {
                 MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
                 textBox1.Focus();
@@ -85,10 +79,10 @@ namespace Tickets_reservation_system.Graphical_User_Interface
                 textBox1.Focus();
                 return;
             }
-            else if(dateTimePicker1.Value > dateTimePicker2.Value)
-                {
-                    MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN");
-                }
+            else if (dateTimePicker1.Value > dateTimePicker2.Value)
+            {
+                MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN");
+            }
             else if ((textBox1.Text == "") || (textBox2.Text == "") || (textBox3.Text == "") || (textBox4.Text == "") || (textBox5.Text == "") || (textBox6.Text == "") || (textBox7.Text == "") || (textBox8.Text == "") || (textBox9.Text == "") || (textBox10.Text == "") || (textBox11.Text == "") || (textBox12.Text == "") || (comboBox1.Text == ""))
                 MessageBox.Show("COMPLETE EMPTY FIELDS");
             else
@@ -96,6 +90,11 @@ namespace Tickets_reservation_system.Graphical_User_Interface
                 MessageBox.Show("SAVED SUCCESSFUL!");
                 Application.Exit();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

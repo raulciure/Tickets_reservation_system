@@ -9,11 +9,11 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tickets_reservation_system.Graphical_User_Interface
+namespace Tickets_reservation_system.Views
 {
-    public partial class Form4 : Form
+    public partial class ReserveFlightView : Form
     {
-        public Form4()
+        public ReserveFlightView()
         {
             InitializeComponent();
         }
@@ -58,7 +58,7 @@ namespace Tickets_reservation_system.Graphical_User_Interface
                 MessageBox.Show("SELECT PAYMENT OPTION");
             else if (radioButton2.Checked == true)
             {
-                Form f = new Form5();
+                Form f = new PaymentView();
                 f.ShowDialog();
             }
             else if(radioButton1.Checked == true)
@@ -76,5 +76,10 @@ namespace Tickets_reservation_system.Graphical_User_Interface
         {
 
         }
-    }
+
+		private void ReserveFlightView_Load(object sender, EventArgs e)
+		{
+
+		}
+	}
 }
