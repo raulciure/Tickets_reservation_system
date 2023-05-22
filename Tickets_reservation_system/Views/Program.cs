@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Tickets_reservation_system
+namespace Tickets_reservation_system.Views
 {
     internal static class Program
     {
@@ -16,7 +16,7 @@ namespace Tickets_reservation_system
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new WelcomePageView());
         }
     }
 }

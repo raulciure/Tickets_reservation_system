@@ -46,19 +46,94 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Views\WelcomePageView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Views\WelcomePageView.Designer.cs">
+      <DependentUpon>WelcomePageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchFlightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SearchFlightView.Designer.cs">
+      <DependentUpon>SearchFlightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectFlightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\SelectFlightView.Designer.cs">
+      <DependentUpon>SelectFlightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReserveFlightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReserveFlightView.Designer.cs">
+      <DependentUpon>ReserveFlightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\PaymentView.Designer.cs">
+      <DependentUpon>PaymentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CompanyLoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\CompanyLoginView.Designer.cs">
+      <DependentUpon>CompanyLoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ManageFlightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ManageFlightView.Designer.cs">
+      <DependentUpon>ManageFlightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddFlightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\AddFlightView.Designer.cs">
+      <DependentUpon>AddFlightView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateFlightView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\UpdateFlightView.Designer.cs">
+      <DependentUpon>UpdateFlightView.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\Flight.cs" />
     <Compile Include="Models\Passanger.cs" />
     <Compile Include="Models\Plane.cs" />
     <Compile Include="Models\Ticket.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Views\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Views\WelcomePageView.resx">
+      <DependentUpon>WelcomePageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SearchFlightView.resx">
+      <DependentUpon>SearchFlightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\SelectFlightView.resx">
+      <DependentUpon>SelectFlightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReserveFlightView.resx">
+      <DependentUpon>ReserveFlightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PaymentView.resx">
+      <DependentUpon>PaymentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\CompanyLoginView.resx">
+      <DependentUpon>CompanyLoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ManageFlightView.resx">
+      <DependentUpon>ManageFlightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\AddFlightView.resx">
+      <DependentUpon>AddFlightView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\UpdateFlightView.resx">
+      <DependentUpon>UpdateFlightView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
