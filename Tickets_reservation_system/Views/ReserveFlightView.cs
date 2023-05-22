@@ -8,14 +8,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets_reservation_system.Models;
 
 namespace Tickets_reservation_system.Views
 {
     public partial class ReserveFlightView : Form
     {
-        public ReserveFlightView()
+        private Flight flight;
+
+
+        internal ReserveFlightView(Flight flight)
         {
             InitializeComponent();
+            this.flight = flight;
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -31,11 +36,11 @@ namespace Tickets_reservation_system.Views
         private void button1_Click(object sender, EventArgs e)
         {
             if(!Regex.Match(textBox1.Text, "^[A-Z][a-zA-Z]*$").Success)
-                {
-                    MessageBox.Show("ADD A VALID NAME");
-                    textBox1.Focus();
-                    return;
-                }
+            {
+                MessageBox.Show("ADD A VALID NAME");
+                textBox1.Focus();
+                return;
+            }
             if (!Regex.Match(textBox2.Text, "^[A-Z][a-zA-Z]*$").Success)
             {
                 MessageBox.Show("ADD A VALID NAME");
@@ -64,7 +69,8 @@ namespace Tickets_reservation_system.Views
             else if(radioButton1.Checked == true)
             {
                 MessageBox.Show("BOOKING SUCCESSFUL!" + '\n'+ "YOU WILL RECEIVE A RESERVATION E-MAIL WITH ALL THE NECESSARY DATA!"+'\n'+"THANK YOU!");
-                Application.Exit();            }
+                //Application.Exit();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

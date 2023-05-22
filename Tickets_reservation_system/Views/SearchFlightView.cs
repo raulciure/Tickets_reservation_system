@@ -19,9 +19,18 @@ namespace Tickets_reservation_system.Views
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            if(checkBox1.Checked)
+            {
+                label5.Visible = true;
+                dateTimePicker2.Visible = true;
+            }
+            else
+            {
+                label5.Visible = false;
+                dateTimePicker2.Visible = false;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,25 +41,29 @@ namespace Tickets_reservation_system.Views
                 textBox1.Focus();
                 return;
             }
-            else if((comboBox1.Text).Equals(""))
+            if ((comboBox1.Text).Equals(""))
             {
                 MessageBox.Show("PLEASE SELECT THE ADULTS NUMBER");
+                return;
             }
-            else if ((comboBox2.Text).Equals(""))
+            if ((comboBox2.Text).Equals(""))
             {
                 MessageBox.Show("PLEASE SELECT THE KIDS NUMBER");
+                return;
             }
-            else if ((textBox1.Text == "") || (textBox2.Text == ""))
+            if ((textBox1.Text == "") || (textBox2.Text == ""))
+            {
                 MessageBox.Show("COMPLETE EMPTY FIELDS");
-            else if(dateTimePicker1.Value>dateTimePicker2.Value && checkBox1.Checked==true)
+                return;
+            }
+            if (dateTimePicker1.Value > dateTimePicker2.Value && checkBox1.Checked == true)
             {
                 MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN");
+                return;
             }
-            else
-            {
-                Form f = new SelectFlightView();
-                f.ShowDialog();
-            }
+           
+            Form f = new SelectFlightView();
+            f.ShowDialog();
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets_reservation_system.Models;
 
 namespace Tickets_reservation_system.Views
 {
@@ -19,8 +20,17 @@ namespace Tickets_reservation_system.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = new ReserveFlightView();
-            f.ShowDialog();
+            Flight selectedFlight = (Flight) dataGridView1.CurrentRow.DataBoundItem;
+
+            if (selectedFlight != null)
+            {
+                Form f = new ReserveFlightView(selectedFlight);
+                f.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No item selected!", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -16,10 +16,6 @@ namespace Tickets_reservation_system.Views
         {
             InitializeComponent();
         }
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -32,10 +28,5 @@ namespace Tickets_reservation_system.Views
             Form f = new CompanyLoginView();
             f.ShowDialog();
         }
-
-		private void pictureBox1_Click(object sender, EventArgs e)
-		{
-
-		}
 	}
 }
