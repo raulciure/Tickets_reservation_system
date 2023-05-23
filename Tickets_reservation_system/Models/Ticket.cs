@@ -21,6 +21,8 @@ namespace Tickets_reservation_system.Models
             this.seatNr = seatNr;
         }
 
+        public Ticket() { }
+
         public Flight Flight { get => this.flight; set => this.flight = value; }
         public Passanger Passanger { get => this.passanger; set => this.passanger = value; }
         public string TicketId { get => this.ticketId; set => this.ticketId = value; }

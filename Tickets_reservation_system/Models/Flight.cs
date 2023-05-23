@@ -42,6 +42,8 @@ namespace Tickets_reservation_system.Models
             this.company = company;
         }
 
+        public Flight() { }
+
         public string DepartureAirport { get => this.departureAirport; set => this.departureAirport = value; }
         public string ArrivalAirport { get => this.arrivalAirport; set => this.arrivalAirport = value; }
         public DateTime DepartureTime { get => this.departureTime; set => this.departureTime = value; }

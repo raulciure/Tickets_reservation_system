@@ -26,6 +26,8 @@ namespace Tickets_reservation_system.Models
             this.idSerialNumber = idSerialNumber;
         }
 
+        public Passanger() { }
+
         public string FirstName { get => this.firstName; set => this.firstName = value; }
         public string LastName { get => this.lastName; set => this.lastName = value; }
         public string Email { get => this.email; set => this.email = value; }

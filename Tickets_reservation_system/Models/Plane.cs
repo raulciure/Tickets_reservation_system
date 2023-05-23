@@ -30,6 +30,8 @@ namespace Tickets_reservation_system.Models
             this.range = range;
         }
 
+        public Plane() { }
+
         public string Name { get => this.name; set => this.name = value; }
         public string TailNumber { get => this.tailNumber; set => this.tailNumber = value; }
         public int SeatsNr { get => this.seatsNr; set => this.seatsNr = value; }
