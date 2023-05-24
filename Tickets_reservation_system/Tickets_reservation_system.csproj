@@ -72,12 +72,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Repositories\CompanyRepository.cs" />
+    <Compile Include="Models\Repositories\DBConnection.cs" />
+    <Compile Include="Models\Repositories\FlightRepository.cs" />
     <Compile Include="Models\Repositories\ICompanyRepository.cs" />
     <Compile Include="Models\Repositories\IFlightRepository.cs" />
     <Compile Include="Models\Repositories\IPassangerRepository.cs" />
     <Compile Include="Models\Repositories\IPlaneRepository.cs" />
     <Compile Include="Models\Repositories\IRepository.cs" />
     <Compile Include="Models\Repositories\ITicketRepository.cs" />
+    <Compile Include="Models\Repositories\PassangerRepository.cs" />
+    <Compile Include="Models\Repositories\PlaneRepository.cs" />
+    <Compile Include="Models\Repositories\TicketRepository.cs" />
     <Compile Include="Views\WelcomePageView.cs">
       <SubType>Form</SubType>
     </Compile>

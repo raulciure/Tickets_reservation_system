@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal interface ITicketRepository
+    internal interface ITicketRepository : IRepository<Ticket>
     {
         Ticket GetTicket(int ticketId);
     }

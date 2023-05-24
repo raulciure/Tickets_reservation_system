@@ -8,7 +8,7 @@ namespace Tickets_reservation_system.Models
 {
     internal class Flight
     {
-        internal enum Days
+        public enum Days
         {
             MONDAY,
             TUESDAY,

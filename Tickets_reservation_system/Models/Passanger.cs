@@ -12,11 +12,11 @@ namespace Tickets_reservation_system.Models
         private string lastName;
         private string email;
         private string phoneNumber;
-        private string age;
+        private int age;
         private string idSerialNumber;
 
         public Passanger(string firstName, string lastName, string email,
-            string phoneNumber, string age, string idSerialNumber)
+            string phoneNumber, int age, string idSerialNumber)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -32,7 +32,7 @@ namespace Tickets_reservation_system.Models
         public string LastName { get => this.lastName; set => this.lastName = value; }
         public string Email { get => this.email; set => this.email = value; }
         public string PhoneNumber { get => this.phoneNumber; set => this.phoneNumber = value; }
-        public string Age { get => this.age; set => this.age = value; }
+        public int Age { get => this.age; set => this.age = value; }
         public string IdSerialNumber { get => this.idSerialNumber; set => this.idSerialNumber = value; }
     }
 }

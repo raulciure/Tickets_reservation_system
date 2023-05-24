@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal interface IPlaneRepository
+    internal interface IPlaneRepository : IRepository<Plane>
     {
         Plane GetPlane(string tailNumber);
+        void DeletePlanesOfCompany(string companyName);
+        List<Plane> GetPlanesByCompany(string companyName);
         List<Plane> GetAll();
     }
 }

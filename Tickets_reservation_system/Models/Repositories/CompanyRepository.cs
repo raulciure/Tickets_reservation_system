@@ -4,27 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
     internal class CompanyRepository : ICompanyRepository
     {
-        private static SqliteConnection connection = getDBConnection("TicketsReservationDB.db");
-
-        static SqliteConnection getDBConnection(string filename)
-        {
-            var connection = new SqliteConnection("Data Source = " + filename);
-            try
-            {
-                connection.Open();
-                return connection;
-            }
-            catch (SqliteException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            return null;
-        }
+        private static readonly SqliteConnection connection = DBConnection.getDBConnection("TicketsReservationDB.db");
 
         public void Add(Company obj)
         {
@@ -47,8 +34,8 @@ namespace Tickets_reservation_system.Models.Repositories
             try
             {
                 var command = connection.CreateCommand();
-                command.CommandText = "UPDATE Companies" +
-                    "SET name = $field1, countryOfReg = $field2" +
+                command.CommandText = "UPDATE Companies " +
+                    "SET name = $field1, countryOfReg = $field2 " +
                     "WHERE name = $currentName";
                 command.Parameters.AddWithValue("field1", updateObj.Name);
                 command.Parameters.AddWithValue("field2", updateObj.CountryOfRegistration);
@@ -64,15 +51,15 @@ namespace Tickets_reservation_system.Models.Repositories
         {
             try
             {
-                var command1 = connection.CreateCommand();
-                command1.CommandText = "DELETE FROM Planes WHERE companyName = $companyName";
-                command1.Parameters.AddWithValue("companyName", obj.Name);
-                command1.ExecuteNonQuery();
+                // delete planes linked to/owned by this company
+                PlaneRepository planeRepository = new PlaneRepository();
+                planeRepository.DeletePlanesOfCompany(obj.Name);
 
-                var command2 = connection.CreateCommand();
-                command2.CommandText = "DELETE FROM Companies WHERE name=$name";
-                command2.Parameters.AddWithValue("$name", obj.Name);
-                command2.ExecuteNonQuery();
+                // delete company itself
+                var command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM Companies WHERE name=$name";
+                command.Parameters.AddWithValue("$name", obj.Name);
+                command.ExecuteNonQuery();
             }
             catch (SqliteException ex)
             {
@@ -84,33 +71,20 @@ namespace Tickets_reservation_system.Models.Repositories
         {
             try
             {
-                var command1 = connection.CreateCommand();
-                command1.CommandText = "SELECT * FROM Companies WHERE name=$name";
-                command1.Parameters.AddWithValue("$name", name);
-                var reader1 = command1.ExecuteReader();
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM Companies WHERE name=$name";
+                command.Parameters.AddWithValue("$name", name);
+                var reader = command.ExecuteReader();
 
-                var command2 = connection.CreateCommand();
-                command2.CommandText = "SELECT * FROM Planes WHERE companyName = $companyName";
-                command2.Parameters.AddWithValue("companyName", name);
-                var reader2 = command2.ExecuteReader();
-                
-                reader1.Read();
                 Company company = new Company();
-                company.Name = reader1.GetString(0);
-                company.CountryOfRegistration = reader1.GetString(1);
-
-                while(reader2.Read())
+                if (reader.Read())
                 {
-                    Plane plane = new Plane();
-                    plane.Name = reader2.GetString(1);
-                    plane.TailNumber = reader2.GetString(2);
-                    plane.SeatsNr = reader2.GetInt32(3);
-                    plane.SeatingConfiguration.EconomySeats = reader2.GetInt32(4);
-                    plane.SeatingConfiguration.BussinessSeats = reader2.GetInt32(5);
-                    plane.SeatingConfiguration.FirstSeats = reader2.GetInt32(6);
-                    plane.Range = reader2.GetInt32(7);
+                    company.Name = reader.GetString(0);
+                    company.CountryOfRegistration = reader.GetString(1);
 
-                    company.Fleet.Add(plane);
+                    // get planes owned by this company
+                    PlaneRepository planeRepository = new PlaneRepository();
+                    company.Fleet = planeRepository.GetPlanesByCompany(company.Name);
                 }
 
                 return company;
@@ -125,7 +99,34 @@ namespace Tickets_reservation_system.Models.Repositories
 
         public List<Company> GetAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Company> list = new List<Company>();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT * FROM Companies";
+
+                var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Company company = new Company();
+
+                    company.Name = reader.GetString(0);
+                    company.CountryOfRegistration = reader.GetString(1);
+
+                    // get planes owned by this company
+                    PlaneRepository planeRepository = new PlaneRepository();
+                    company.Fleet = planeRepository.GetPlanesByCompany(company.Name);
+
+                    list.Add(company);
+                }
+                return list;
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
         }
     }
 }
