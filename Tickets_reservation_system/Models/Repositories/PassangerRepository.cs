@@ -64,15 +64,15 @@ namespace Tickets_reservation_system.Models.Repositories
         {
             try
             {
-                var command1 = connection.CreateCommand();
-                command1.CommandText = "DELETE FROM Tickets WHERE passangerIdSerialNr = $id";
-                command1.Parameters.AddWithValue("$id", obj.IdSerialNumber);
-                command1.ExecuteNonQuery();
+                // delete tickets owned by passangers
+                TicketRepository ticketRepository = new TicketRepository();
+                ticketRepository.DeleteTicketByPassangerIdSerialNumber(obj.IdSerialNumber);
 
-                var command2 = connection.CreateCommand();
-                command2.CommandText = "DELETE FROM Passangers WHERE idSerialNumber = $id";
-                command2.Parameters.AddWithValue("$id", obj.IdSerialNumber);
-                command2.ExecuteNonQuery();
+                // delete ticket itself
+                var command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM Passangers WHERE idSerialNumber = $id";
+                command.Parameters.AddWithValue("$id", obj.IdSerialNumber);
+                command.ExecuteNonQuery();
             }
             catch (SqliteException ex)
             {

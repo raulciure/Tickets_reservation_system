@@ -13,17 +13,62 @@ namespace Tickets_reservation_system.Models.Repositories
 
         public void Add(Ticket obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO Tickets " +
+                    "VALUES($flightNumber, $passangerIdSerialNumber, " +
+                    "$ticketId, $seatNr)";
+                command.Parameters.AddWithValue("$flightNumber", obj.Flight.FlightNumber);
+                command.Parameters.AddWithValue("$passangerIdSerialNumber", obj.Passanger.IdSerialNumber);
+                command.Parameters.AddWithValue("$ticketId", obj.TicketId);
+                command.Parameters.AddWithValue("$seatNr", obj.SeatNr);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void Update(Ticket currentObj, Ticket updateObj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "UPDATE Tickets " +
+                    "SET $flightNumber, $passangerIdSerialNr, $ticketId, $seatNr " +
+                    "WHERE ticketId = $currentTicketId";
+                command.Parameters.AddWithValue("$flightNumber", updateObj.Flight.FlightNumber);
+                command.Parameters.AddWithValue("$passangerIdSerialNumber", updateObj.Passanger.IdSerialNumber);
+                command.Parameters.AddWithValue("$ticketId", updateObj.TicketId);
+                command.Parameters.AddWithValue("$seatNr", updateObj.SeatNr);
+
+                command.Parameters.AddWithValue("$currentFlightNumber", currentObj.TicketId);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public void Delete(Ticket obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM Tickets WHERE ticketId = $ticketId";
+                command.Parameters.AddWithValue("$ticketId", obj.TicketId);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         public Ticket GetTicket(int ticketId)
@@ -59,6 +104,22 @@ namespace Tickets_reservation_system.Models.Repositories
                 Console.WriteLine(ex.Message);
             }
             return null;
+        }
+
+        public void DeleteTicketByPassangerIdSerialNumber(string idSerialNumber)
+        {
+            try
+            {
+                var command = connection.CreateCommand();
+                command.CommandText = "DELETE FROM Tickets WHERE passangerIdSerialNr = $passangerIdSerialNr";
+                command.Parameters.AddWithValue("$passangerIdSerialNr", idSerialNumber);
+
+                command.ExecuteNonQuery();
+            }
+            catch (SqliteException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }
