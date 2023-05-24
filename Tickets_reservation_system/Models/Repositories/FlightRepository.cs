@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace Tickets_reservation_system.Models.Repositories
                 command.Parameters.AddWithValue("$arrival", obj.ArrivalAirport);
                 command.Parameters.AddWithValue("$departureTime", obj.DepartureTime.ToString("HH:mm"));
                 command.Parameters.AddWithValue("$arrivalTime", obj.ArrivalTime.ToString("HH:mm"));
-                command.Parameters.AddWithValue("$flightTime", obj.FlightTime.ToString("HH:mm"));
+                command.Parameters.AddWithValue("$flightTime", obj.FlightTime.ToString(@"hh\:mm"));
 
                 string operatingDaysString = string.Join(",", obj.OperatingDays);
                 command.Parameters.AddWithValue("$days", operatingDaysString);
@@ -52,9 +53,9 @@ namespace Tickets_reservation_system.Models.Repositories
                 command.Parameters.AddWithValue("$flightNumber", updateObj.FlightNumber);
                 command.Parameters.AddWithValue("$departure", updateObj.DepartureAirport);
                 command.Parameters.AddWithValue("$arrival", updateObj.ArrivalAirport);
-                command.Parameters.AddWithValue("$departureTime", updateObj.DepartureTime);
-                command.Parameters.AddWithValue("$arrivalTime", updateObj.ArrivalTime);
-                command.Parameters.AddWithValue("$flightTime", updateObj.FlightTime);
+                command.Parameters.AddWithValue("$departureTime", updateObj.DepartureTime.ToString("HH:mm"));
+                command.Parameters.AddWithValue("$arrivalTime", updateObj.ArrivalTime.ToString("HH:mm"));
+                command.Parameters.AddWithValue("$flightTime", updateObj.FlightTime.ToString(@"hh\:mm"));
 
                 string operatingDaysString = string.Join(",", updateObj.OperatingDays);
                 command.Parameters.AddWithValue("$days", operatingDaysString);
@@ -107,7 +108,7 @@ namespace Tickets_reservation_system.Models.Repositories
                     flight.ArrivalAirport = reader.GetString(2);
                     flight.DepartureTime = DateTime.Parse(reader.GetString(3));
                     flight.ArrivalTime = DateTime.Parse(reader.GetString(4));
-                    flight.FlightTime = DateTime.Parse(reader.GetString(5));
+                    flight.FlightTime = TimeSpan.ParseExact(reader.GetString(5), @"hh\:mm", CultureInfo.InvariantCulture, TimeSpanStyles.None);
                     
                     string operatingDaysString = reader.GetString(6);
                     var splitString = operatingDaysString.Split(',');
@@ -155,7 +156,7 @@ namespace Tickets_reservation_system.Models.Repositories
                     flight.ArrivalAirport = reader.GetString(2);
                     flight.DepartureTime = DateTime.Parse(reader.GetString(3));
                     flight.ArrivalTime = DateTime.Parse(reader.GetString(4));
-                    flight.FlightTime = DateTime.Parse(reader.GetString(5));
+                    flight.FlightTime = TimeSpan.ParseExact(reader.GetString(5), @"hh\:mm", CultureInfo.InvariantCulture, TimeSpanStyles.None);
 
                     string operatingDaysString = reader.GetString(6);
                     var splitString = operatingDaysString.Split(',');

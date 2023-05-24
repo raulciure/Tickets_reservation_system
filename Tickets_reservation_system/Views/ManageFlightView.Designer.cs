@@ -1,6 +1,6 @@
 ﻿namespace Tickets_reservation_system.Views
 {
-    partial class ManageFlightView
+    partial class ManageFlightsView
     {
         /// <summary>
         /// Required designer variable.

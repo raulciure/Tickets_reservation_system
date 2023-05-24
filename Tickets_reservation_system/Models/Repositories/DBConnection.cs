@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
+using System.IO;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
@@ -7,7 +8,11 @@ namespace Tickets_reservation_system.Models.Repositories
     {
         public static SqliteConnection getDBConnection(string filename)
         {
-            var connection = new SqliteConnection("Data Source = " + filename);
+            var workingDirectory = Environment.CurrentDirectory;
+            var projectDirecory = Directory.GetParent(workingDirectory).Parent.FullName;
+
+            var connection = new SqliteConnection(@"Data Source = " + Path.Combine(projectDirecory, filename));
+
             try
             {
                 connection.Open();

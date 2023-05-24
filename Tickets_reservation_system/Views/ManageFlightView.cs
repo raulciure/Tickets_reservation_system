@@ -8,14 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tickets_reservation_system.Models;
+using Tickets_reservation_system.Controllers;
+
 
 namespace Tickets_reservation_system.Views
 {
-    public partial class ManageFlightView : Form
+    public partial class ManageFlightsView : Form
     {
-        public ManageFlightView()
+        private readonly ManageFlightsController controller;
+
+        public ManageFlightsView()
         {
             InitializeComponent();
+            dataGridView1.DataSource = controller.GetFlights();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,8 +46,11 @@ namespace Tickets_reservation_system.Views
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Flight removeFlight = (Flight)dataGridView1.CurrentRow.DataBoundItem;
+
+            controller.Remove(removeFlight);
+
             MessageBox.Show("FLIGHT REMOVED SUCCESSFUL!");
-            Application.Exit();
         }
     }
 }
