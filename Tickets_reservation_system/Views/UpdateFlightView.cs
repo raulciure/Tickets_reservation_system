@@ -112,6 +112,20 @@ namespace Tickets_reservation_system.Views
                 Range = Int32.Parse(rangeTextBox.Text)
             };
 
+            Flight newFlight = new Flight
+            {
+                FlightNumber = flightNumberTextBox.Text,
+                DepartureAirport = departureTextBox.Text,
+                ArrivalAirport = arrivalTextBox.Text,
+                DepartureTime = departureTimeDateTimePicker.Value,
+                ArrivalTime = arrivalTimeDateTimePicker.Value,
+                FlightTime = manageFlightsController.GetFlightTime(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value),
+                OperatingDays = manageFlightsController.GetOperatingDays(operatingDaysCheckedListBox.SelectedItems),
+                Price = Int32.Parse(priceTextBox.Text),
+                Company = newCompany,
+                Plane = newPlane
+            };
+
             MessageBox.Show("SAVED SUCCESSFUL!");
         }
 

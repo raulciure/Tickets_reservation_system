@@ -73,7 +73,7 @@ namespace Tickets_reservation_system.Views
                 companyNameTextBox.Focus();
                 return;
             }
-            if (!Regex.Match(textBox12.Text, "^[1-9]*$").Success)
+            if (!Regex.Match(priceTextBox.Text, "^[1-9]*$").Success)
             {
                 MessageBox.Show("ADD A VALID PRICE");
                 companyNameTextBox.Focus();
@@ -84,7 +84,7 @@ namespace Tickets_reservation_system.Views
                 MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN");
                 return;
             }
-            if ((companyNameTextBox.Text == "") || (planeTailNumberTextBox.Text == "") || (seatsNrTextBox.Text == "") || (economySeatsNr.Text == "") || (bussinessSeatsNr.Text == "") || (firstSeatsNr.Text == "") || (rangeTextBox.Text == "") || (flightNumberTextBox.Text == "") || (departureAirportTextBox.Text == "") || (arrivalAirportTextBox.Text == "") || (textBox12.Text == ""))
+            if ((companyNameTextBox.Text == "") || (planeTailNumberTextBox.Text == "") || (seatsNrTextBox.Text == "") || (economySeatsNr.Text == "") || (bussinessSeatsNr.Text == "") || (firstSeatsNr.Text == "") || (rangeTextBox.Text == "") || (flightNumberTextBox.Text == "") || (departureAirportTextBox.Text == "") || (arrivalAirportTextBox.Text == "") || (priceTextBox.Text == ""))
             {
                 MessageBox.Show("COMPLETE EMPTY FIELDS");
                 return;
@@ -119,6 +119,7 @@ namespace Tickets_reservation_system.Views
                 ArrivalTime = arrivalTimeDateTimePicker.Value,
                 FlightTime = manageFlightController.GetFlightTime(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value),
                 OperatingDays = manageFlightController.GetOperatingDays(operatingDaysCheckedListBox.SelectedItems),
+                Price = Int32.Parse(priceTextBox.Text),
                 Company = company,
                 Plane = plane
             };

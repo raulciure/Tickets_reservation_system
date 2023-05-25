@@ -18,7 +18,7 @@ namespace Tickets_reservation_system.Models.Repositories
             {
                 var command = connection.CreateCommand();
                 command.CommandText = "INSERT INTO Flights " +
-                    "VALUES($flightNumber, $departure, $arrival, $departureTime, $arrivalTime, $flightTime, $days, $planeTailNumber, $companyName)";
+                    "VALUES($flightNumber, $departure, $arrival, $departureTime, $arrivalTime, $flightTime, $days, $price, $planeTailNumber, $companyName)";
                 command.Parameters.AddWithValue("$flightNumber", obj.FlightNumber);
                 command.Parameters.AddWithValue("$departure", obj.DepartureAirport);
                 command.Parameters.AddWithValue("$arrival", obj.ArrivalAirport);
@@ -29,6 +29,7 @@ namespace Tickets_reservation_system.Models.Repositories
                 string operatingDaysString = string.Join(",", obj.OperatingDays);
                 command.Parameters.AddWithValue("$days", operatingDaysString);
 
+                command.Parameters.AddWithValue("$price", obj.Price);
                 command.Parameters.AddWithValue("$planeTailNumber", obj.Plane.TailNumber);
                 command.Parameters.AddWithValue("$companyName", obj.Company.Name);
 
@@ -48,7 +49,7 @@ namespace Tickets_reservation_system.Models.Repositories
                 command.CommandText = "UPDATE Flights " +
                     "SET flightNumber = $flightNumber, departure = $departure, arrival = $arrival, " +
                     "departureTime = $departureTime, arrivalTime = $arrivalTime, flightTime = $flightTime, " +
-                    "days = $days, planeTailNumber = $planeTailNumber, companyName = $companyName " +
+                    "days = $days, price = $price, planeTailNumber = $planeTailNumber, companyName = $companyName " +
                     "WHERE flightNumber = $currentFlightNumber";
                 command.Parameters.AddWithValue("$flightNumber", updateObj.FlightNumber);
                 command.Parameters.AddWithValue("$departure", updateObj.DepartureAirport);
@@ -60,6 +61,7 @@ namespace Tickets_reservation_system.Models.Repositories
                 string operatingDaysString = string.Join(",", updateObj.OperatingDays);
                 command.Parameters.AddWithValue("$days", operatingDaysString);
 
+                command.Parameters.AddWithValue("$price", updateObj.Price);
                 command.Parameters.AddWithValue("$planeTailNumber", updateObj.Plane.TailNumber);
                 command.Parameters.AddWithValue("$companyName", updateObj.Company.Name);
 
@@ -116,14 +118,16 @@ namespace Tickets_reservation_system.Models.Repositories
                     {
                         flight.OperatingDays.Add((Flight.Days) Enum.Parse(typeof(Flight.Days), entry));
                     }
+
+                    flight.Price = reader.GetInt32(7);
                     
                     // construct plane object from planeTailNumber
                     PlaneRepository planeRepository = new PlaneRepository();
-                    flight.Plane = planeRepository.GetPlane(reader.GetString(7));
+                    flight.Plane = planeRepository.GetPlane(reader.GetString(8));
 
                     // construct company object from companyName
                     CompanyRepository companyRepository = new CompanyRepository();
-                    flight.Company = companyRepository.GetCompany(reader.GetString(8));
+                    flight.Company = companyRepository.GetCompany(reader.GetString(9));
 
                     return flight;
                 }
@@ -165,13 +169,15 @@ namespace Tickets_reservation_system.Models.Repositories
                         flight.OperatingDays.Add((Flight.Days)Enum.Parse(typeof(Flight.Days), entry));
                     }
 
+                    flight.Price = Int32.Parse(reader.GetString(7));
+
                     // construct plane object from planeTailNumber
                     PlaneRepository planeRepository = new PlaneRepository();
-                    flight.Plane = planeRepository.GetPlane(reader.GetString(7));
+                    flight.Plane = planeRepository.GetPlane(reader.GetString(8));
 
                     // construct company object from companyName
                     CompanyRepository companyRepository = new CompanyRepository();
-                    flight.Company = companyRepository.GetCompany(reader.GetString(8));
+                    flight.Company = companyRepository.GetCompany(reader.GetString(9));
 
                     list.Add(flight);
                 }

@@ -55,7 +55,7 @@
             this.arrivalTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.priceTextBox = new System.Windows.Forms.TextBox();
             this.operatingDaysCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.companyNameTextBox = new System.Windows.Forms.TextBox();
             this.planeTailNumberTextBox = new System.Windows.Forms.TextBox();
@@ -334,13 +334,13 @@
             this.label16.TabIndex = 34;
             this.label16.Text = "PRICE:";
             // 
-            // textBox12
+            // priceTextBox
             // 
-            this.textBox12.Location = new System.Drawing.Point(764, 622);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(182, 26);
-            this.textBox12.TabIndex = 35;
+            this.priceTextBox.Location = new System.Drawing.Point(764, 622);
+            this.priceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.priceTextBox.Name = "priceTextBox";
+            this.priceTextBox.Size = new System.Drawing.Size(182, 26);
+            this.priceTextBox.TabIndex = 35;
             // 
             // operatingDaysCheckedListBox
             // 
@@ -392,7 +392,7 @@
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(1022, 849);
             this.Controls.Add(this.operatingDaysCheckedListBox);
-            this.Controls.Add(this.textBox12);
+            this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.arrivalTimeDateTimePicker);
@@ -461,7 +461,7 @@
         private System.Windows.Forms.DateTimePicker arrivalTimeDateTimePicker;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.CheckedListBox operatingDaysCheckedListBox;
         private System.Windows.Forms.TextBox companyNameTextBox;
         private System.Windows.Forms.TextBox planeTailNumberTextBox;

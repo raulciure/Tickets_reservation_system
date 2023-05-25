@@ -26,11 +26,12 @@ namespace Tickets_reservation_system.Models
         private TimeSpan flightTime;
         private List<Days> operatingDays;
         private string flightNumber;
+        private int price;
         private Plane plane;
         private Company company;
 
         public Flight(string departureAirport, string arrivalAirport, DateTime departureTime, DateTime arrivalTime, 
-            TimeSpan flightTime, string flightNumber, Plane plane, Company company)
+            TimeSpan flightTime, string flightNumber, int price, Plane plane, Company company)
         {
             this.departureAirport = departureAirport;
             this.arrivalAirport = arrivalAirport;
@@ -38,6 +39,7 @@ namespace Tickets_reservation_system.Models
             this.arrivalTime = arrivalTime;
             this.flightTime = flightTime;
             this.flightNumber = flightNumber;
+            this.price = price;
             this.plane = plane;
             this.company = company;
         }
@@ -51,6 +53,7 @@ namespace Tickets_reservation_system.Models
         public TimeSpan FlightTime { get => this.flightTime; set => this.flightTime = value; }
         public List<Days> OperatingDays { get => this.operatingDays; set => this.operatingDays = value; }
         public string FlightNumber { get => this.flightNumber; set => this.flightNumber = value; }
+        public int Price { get => this.price; set => this.price = value; }
         public Plane Plane { get => this.plane; set => this.plane = value; }
         public Company Company { get => this.company; set => this.company = value; }
     }
