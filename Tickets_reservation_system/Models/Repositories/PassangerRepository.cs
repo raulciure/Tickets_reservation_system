@@ -1,113 +1,59 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
     internal class PassangerRepository : IPassangerRepository
     {
-        private static readonly SqliteConnection connection = DBConnection.getDBConnection("TicketsReservationDB.db");
+        private string jsonPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, "Database/passangers_data.json");
+
+        public void SerializeJson(List<Passanger> list, string path)
+        {
+            string jsonText = JsonSerializer.Serialize(list);
+            File.WriteAllText(path, jsonText);
+        }
+
+        public List<Passanger> DeserializeJson(string path)
+        {
+            string jsonText = File.ReadAllText(path);
+            Type type = typeof(Passanger);
+
+            List<Passanger> list = (List<Passanger>)JsonSerializer.Deserialize(jsonText, type);
+            return list;
+        }
 
         public void Add(Passanger obj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO Passangers " +
-                    "VALUES($idSerialNumber, $firstName, $lastName, $email, $phoneNumber, $age)";
-                command.Parameters.AddWithValue("$idSerialNumber", obj.IdSerialNumber);
-                command.Parameters.AddWithValue("$firstName", obj.FirstName);
-                command.Parameters.AddWithValue("$lastName", obj.LastName);
-                command.Parameters.AddWithValue("$email", obj.Email);
-                command.Parameters.AddWithValue("$phoneNumber", obj.PhoneNumber);
-                command.Parameters.AddWithValue("$age", obj.Age);
-                
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            { 
-                Console.WriteLine(ex.Message);
-            }
+            List<Passanger> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.Add(obj);
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public void Update(Passanger currentObj, Passanger updateObj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "UPDATE Passangers " +
-                    "SET idSerialNr = $id, firstName = $firstName, lastName = $lastName, " +
-                    "email = $email, phoneNumber = $phoneNumber, age = $age " +
-                    "WHERE idSerialNr = $currentId";
-
-                command.Parameters.AddWithValue("$id", updateObj.IdSerialNumber);
-                command.Parameters.AddWithValue("$firstName", updateObj.FirstName);
-                command.Parameters.AddWithValue("$lastName", updateObj.LastName);
-                command.Parameters.AddWithValue("$email", updateObj.Email);
-                command.Parameters.AddWithValue("$phoneNumber", updateObj.PhoneNumber);
-                command.Parameters.AddWithValue("$age", updateObj.Age);
-
-                command.Parameters.AddWithValue("currentId", currentObj.IdSerialNumber);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Passanger> jsonContent = DeserializeJson(jsonPath);
+            var index = jsonContent.IndexOf(updateObj);
+            jsonContent[index] = updateObj;
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public void Delete(Passanger obj)
         {
-            try
-            {
-                // delete tickets owned by passangers
-                TicketRepository ticketRepository = new TicketRepository();
-                ticketRepository.DeleteTicketByPassangerIdSerialNumber(obj.IdSerialNumber);
-
-                // delete ticket itself
-                var command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM Passangers WHERE idSerialNumber = $id";
-                command.Parameters.AddWithValue("$id", obj.IdSerialNumber);
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Passanger> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.Remove(obj);
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public Passanger GetPassanger(string idSerialNumber)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Passangers WHERE idSerialNumber = $id";
-                command.Parameters.AddWithValue("$id", idSerialNumber);
-
-                var reader = command.ExecuteReader();
-                if(reader.Read())
-                {
-                    Passanger passanger = new Passanger();
-
-                    passanger.IdSerialNumber = reader.GetString(0);
-                    passanger.FirstName = reader.GetString(1);
-                    passanger.LastName = reader.GetString(2);
-                    passanger.Email = reader.GetString(3);
-                    passanger.PhoneNumber = reader.GetString(4);
-                    passanger.Age = reader.GetInt32(5);
-
-                    return passanger;
-                }
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
+            List<Passanger> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent.Find(x => x.IdSerialNumber.Equals(idSerialNumber));
         }
     }
 }

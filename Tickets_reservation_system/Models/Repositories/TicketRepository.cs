@@ -1,125 +1,66 @@
 ﻿using Microsoft.Data.Sqlite;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
     internal class TicketRepository : ITicketRepository
     {
-        private static readonly SqliteConnection connection = DBConnection.getDBConnection("TicketsReservationDB.db");
+        private string jsonPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, "Database/tickets_data.json");
+
+        public void SerializeJson(List<Ticket> list, string path)
+        {
+            string jsonText = JsonSerializer.Serialize(list);
+            File.WriteAllText(path, jsonText);
+        }
+
+        public List<Ticket> DeserializeJson(string path)
+        {
+            string jsonText = File.ReadAllText(path);
+            Type type = typeof(Ticket);
+
+            List<Ticket> list = (List<Ticket>)JsonSerializer.Deserialize(jsonText, type);
+            return list;
+        }
 
         public void Add(Ticket obj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO Tickets " +
-                    "VALUES($flightNumber, $passangerIdSerialNumber, " +
-                    "$ticketId, $seatNr)";
-                command.Parameters.AddWithValue("$flightNumber", obj.Flight.FlightNumber);
-                command.Parameters.AddWithValue("$passangerIdSerialNumber", obj.Passanger.IdSerialNumber);
-                command.Parameters.AddWithValue("$ticketId", obj.TicketId);
-                command.Parameters.AddWithValue("$seatNr", obj.SeatNr);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Ticket> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.Add(obj);
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public void Update(Ticket currentObj, Ticket updateObj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "UPDATE Tickets " +
-                    "SET $flightNumber, $passangerIdSerialNr, $ticketId, $seatNr " +
-                    "WHERE ticketId = $currentTicketId";
-                command.Parameters.AddWithValue("$flightNumber", updateObj.Flight.FlightNumber);
-                command.Parameters.AddWithValue("$passangerIdSerialNumber", updateObj.Passanger.IdSerialNumber);
-                command.Parameters.AddWithValue("$ticketId", updateObj.TicketId);
-                command.Parameters.AddWithValue("$seatNr", updateObj.SeatNr);
-
-                command.Parameters.AddWithValue("$currentFlightNumber", currentObj.TicketId);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Ticket> jsonContent = DeserializeJson(jsonPath);
+            var index = jsonContent.IndexOf(currentObj);
+            jsonContent[index] = updateObj;
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public void Delete(Ticket obj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM Tickets WHERE ticketId = $ticketId";
-                command.Parameters.AddWithValue("$ticketId", obj.TicketId);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Ticket> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.Remove(obj);
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public Ticket GetTicket(int ticketId)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Tickets WHERE ticketId = $id";
-                command.Parameters.AddWithValue("$id", ticketId);
-
-                var reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    Ticket ticket = new Ticket();
-
-                    // construct flight object from flightNumber
-                    FlightRepository flightRepository = new FlightRepository();
-                    ticket.Flight = flightRepository.GetFlight(reader.GetString(0));
-
-                    // construct passanger object from passangerIdSerialNr
-                    PassangerRepository passangerRepository = new PassangerRepository();
-                    ticket.Passanger = passangerRepository.GetPassanger(reader.GetString(1));
-
-                    // inherent ticket attributes
-                    ticket.TicketId = reader.GetInt32(2);
-                    ticket.SeatNr = reader.GetString(3);
-
-                    return ticket;
-                }
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
+            List<Ticket> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent.Find(x =>  x.TicketId.Equals(ticketId));
         }
 
         public void DeleteTicketByPassangerIdSerialNumber(string idSerialNumber)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM Tickets WHERE passangerIdSerialNr = $passangerIdSerialNr";
-                command.Parameters.AddWithValue("$passangerIdSerialNr", idSerialNumber);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Ticket> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.RemoveAll(x => x.Passanger.IdSerialNumber.Equals(idSerialNumber));
+            SerializeJson(jsonContent, jsonPath);
         }
     }
 }

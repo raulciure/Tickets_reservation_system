@@ -2,192 +2,66 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
     internal class FlightRepository : IFlightRepository
     {
-        private static readonly SqliteConnection connection = DBConnection.getDBConnection("TicketsReservationDB.db");
+        private string jsonPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, "Database/flights_data.json");
+
+        public void SerializeJson(List<Flight> list, string path)
+        {
+            string jsonText = JsonSerializer.Serialize(list);
+            File.WriteAllText(path, jsonText);
+        }
+
+        public List<Flight> DeserializeJson(string path)
+        {
+            string jsonText = File.ReadAllText(path);
+            Type type = typeof(Flight);
+
+            List<Flight> list = (List<Flight>)JsonSerializer.Deserialize(jsonText, type);
+            return list;
+        }
 
         public void Add(Flight obj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "INSERT INTO Flights " +
-                    "VALUES($flightNumber, $departure, $arrival, $departureTime, $arrivalTime, $flightTime, $days, $price, $planeTailNumber, $companyName)";
-                command.Parameters.AddWithValue("$flightNumber", obj.FlightNumber);
-                command.Parameters.AddWithValue("$departure", obj.DepartureAirport);
-                command.Parameters.AddWithValue("$arrival", obj.ArrivalAirport);
-                command.Parameters.AddWithValue("$departureTime", obj.DepartureTime.ToString("HH:mm"));
-                command.Parameters.AddWithValue("$arrivalTime", obj.ArrivalTime.ToString("HH:mm"));
-                command.Parameters.AddWithValue("$flightTime", obj.FlightTime.ToString(@"hh\:mm"));
-
-                string operatingDaysString = string.Join(",", obj.OperatingDays);
-                command.Parameters.AddWithValue("$days", operatingDaysString);
-
-                command.Parameters.AddWithValue("$price", obj.Price);
-                command.Parameters.AddWithValue("$planeTailNumber", obj.Plane.TailNumber);
-                command.Parameters.AddWithValue("$companyName", obj.Company.Name);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Flight> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.Add(obj);
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public void Update(Flight currentObj, Flight updateObj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "UPDATE Flights " +
-                    "SET flightNumber = $flightNumber, departure = $departure, arrival = $arrival, " +
-                    "departureTime = $departureTime, arrivalTime = $arrivalTime, flightTime = $flightTime, " +
-                    "days = $days, price = $price, planeTailNumber = $planeTailNumber, companyName = $companyName " +
-                    "WHERE flightNumber = $currentFlightNumber";
-                command.Parameters.AddWithValue("$flightNumber", updateObj.FlightNumber);
-                command.Parameters.AddWithValue("$departure", updateObj.DepartureAirport);
-                command.Parameters.AddWithValue("$arrival", updateObj.ArrivalAirport);
-                command.Parameters.AddWithValue("$departureTime", updateObj.DepartureTime.ToString("HH:mm"));
-                command.Parameters.AddWithValue("$arrivalTime", updateObj.ArrivalTime.ToString("HH:mm"));
-                command.Parameters.AddWithValue("$flightTime", updateObj.FlightTime.ToString(@"hh\:mm"));
-
-                string operatingDaysString = string.Join(",", updateObj.OperatingDays);
-                command.Parameters.AddWithValue("$days", operatingDaysString);
-
-                command.Parameters.AddWithValue("$price", updateObj.Price);
-                command.Parameters.AddWithValue("$planeTailNumber", updateObj.Plane.TailNumber);
-                command.Parameters.AddWithValue("$companyName", updateObj.Company.Name);
-
-                command.Parameters.AddWithValue("$currentFlightNumber", currentObj.FlightNumber);
-
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Flight> jsonContent = DeserializeJson(jsonPath);
+            var index = jsonContent.IndexOf(currentObj);
+            jsonContent[index] = updateObj;
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public void Delete(Flight obj)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "DELETE FROM Flights WHERE flightNumber = $flightNumber";
-                command.Parameters.AddWithValue("$flightNumber", obj.FlightNumber);
-                command.ExecuteNonQuery();
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            List<Flight> jsonContent = DeserializeJson(jsonPath);
+            jsonContent.Remove(obj);
+            SerializeJson(jsonContent, jsonPath);
         }
 
         public Flight GetFlight(string flightNumber)
         {
-            try
-            {
-                var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Flights " +
-                    "WHERE flightNumber = $flightNumber";
-                command.Parameters.AddWithValue("$flightNumber", flightNumber);
-
-                var reader = command.ExecuteReader();
-                if (reader.Read())
-                {
-                    Flight flight = new Flight();
-
-                    // inherent flight attributes
-                    flight.FlightNumber = reader.GetString(0);
-                    flight.DepartureAirport = reader.GetString(1);
-                    flight.ArrivalAirport = reader.GetString(2);
-                    flight.DepartureTime = DateTime.Parse(reader.GetString(3));
-                    flight.ArrivalTime = DateTime.Parse(reader.GetString(4));
-                    flight.FlightTime = TimeSpan.ParseExact(reader.GetString(5), @"hh\:mm", CultureInfo.InvariantCulture, TimeSpanStyles.None);
-                    
-                    string operatingDaysString = reader.GetString(6);
-                    var splitString = operatingDaysString.Split(',');
-                    foreach (var entry in splitString)
-                    {
-                        flight.OperatingDays.Add((Flight.Days) Enum.Parse(typeof(Flight.Days), entry));
-                    }
-
-                    flight.Price = reader.GetInt32(7);
-                    
-                    // construct plane object from planeTailNumber
-                    PlaneRepository planeRepository = new PlaneRepository();
-                    flight.Plane = planeRepository.GetPlane(reader.GetString(8));
-
-                    // construct company object from companyName
-                    CompanyRepository companyRepository = new CompanyRepository();
-                    flight.Company = companyRepository.GetCompany(reader.GetString(9));
-
-                    return flight;
-                }
-
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
+            List<Flight> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent.Find(x => x.FlightNumber.Equals(flightNumber));
         }
 
         public List<Flight> GetAll()
         {
-            try
-            {
-                List<Flight> list = new List<Flight>();
-
-                var command = connection.CreateCommand();
-                command.CommandText = "SELECT * FROM Flights";
-
-                var reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Flight flight = new Flight();
-
-                    // inherent flight attributes
-                    flight.FlightNumber = reader.GetString(0);
-                    flight.DepartureAirport = reader.GetString(1);
-                    flight.ArrivalAirport = reader.GetString(2);
-                    flight.DepartureTime = DateTime.Parse(reader.GetString(3));
-                    flight.ArrivalTime = DateTime.Parse(reader.GetString(4));
-                    flight.FlightTime = TimeSpan.ParseExact(reader.GetString(5), @"hh\:mm", CultureInfo.InvariantCulture, TimeSpanStyles.None);
-
-                    string operatingDaysString = reader.GetString(6);
-                    var splitString = operatingDaysString.Split(',');
-                    foreach (var entry in splitString)
-                    {
-                        flight.OperatingDays.Add((Flight.Days)Enum.Parse(typeof(Flight.Days), entry));
-                    }
-
-                    flight.Price = Int32.Parse(reader.GetString(7));
-
-                    // construct plane object from planeTailNumber
-                    PlaneRepository planeRepository = new PlaneRepository();
-                    flight.Plane = planeRepository.GetPlane(reader.GetString(8));
-
-                    // construct company object from companyName
-                    CompanyRepository companyRepository = new CompanyRepository();
-                    flight.Company = companyRepository.GetCompany(reader.GetString(9));
-
-                    list.Add(flight);
-                }
-                return list;
-            }
-            catch (SqliteException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            return null;
+            List<Flight> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent;
         }
     }
 }
