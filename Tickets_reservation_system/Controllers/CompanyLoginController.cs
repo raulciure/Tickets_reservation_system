@@ -23,9 +23,8 @@ namespace Tickets_reservation_system.Controllers
 
         public bool LoginValidation(string username, string password)
         {
-            CompanyUser user = new CompanyUser { User = username, Password = password };
-
-            if(companyUsers.Contains(user)) return true;
+            if(companyUsers.Any(x => x.User.Equals(username) && x.Password.Equals(password)))
+                return true;
             return false;
         }
     }

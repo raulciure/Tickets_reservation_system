@@ -13,7 +13,7 @@ namespace Tickets_reservation_system.Controllers
 {
     internal class ManageFlightsController
     {
-        private readonly FlightRepository flightRepository;
+        private readonly FlightRepository flightRepository = new FlightRepository();
 
         public void Add(Flight flight)
         {
