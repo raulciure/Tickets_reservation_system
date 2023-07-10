@@ -10,7 +10,7 @@ namespace Tickets_reservation_system.Controllers
 {
     internal class CompanyController
     {
-        private readonly CompanyRepository companyRepository;
+        private readonly CompanyRepository companyRepository = new CompanyRepository();
 
         public List<Company> GetCompanies()
         {

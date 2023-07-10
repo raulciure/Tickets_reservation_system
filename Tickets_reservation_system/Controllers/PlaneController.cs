@@ -10,7 +10,7 @@ namespace Tickets_reservation_system.Controllers
 {
     internal class PlaneController
     {
-        private readonly PlaneRepository planeRepository;
+        private readonly PlaneRepository planeRepository = new PlaneRepository();
 
         public List<Plane> GetPlanesByCompany(Company company)
         {

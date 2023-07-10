@@ -16,7 +16,7 @@ namespace Tickets_reservation_system.Views
 {
     public partial class AddFlightView : Form
     {
-        private readonly ManageFlightsController manageFlightController;
+        private readonly ManageFlightsController manageFlightController = new ManageFlightsController();
 
         public AddFlightView()
         {

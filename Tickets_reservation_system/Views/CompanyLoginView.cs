@@ -14,7 +14,7 @@ namespace Tickets_reservation_system.Views
 {
     public partial class CompanyLoginView : Form
     {
-        private readonly CompanyLoginController controller;
+        private readonly CompanyLoginController controller = new CompanyLoginController();
 
         public CompanyLoginView()
         {

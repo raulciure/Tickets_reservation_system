@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models
 {
+    [Serializable]
     internal class Ticket
     {
         private Flight flight;

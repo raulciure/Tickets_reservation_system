@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models
 {
+    [Serializable]
     internal class Passanger
     {
         private string firstName;

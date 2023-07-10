@@ -1,30 +1,28 @@
 ﻿using Microsoft.Data.Sqlite;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
     internal class PassangerRepository : IPassangerRepository
     {
-        private string jsonPath = Path.Combine(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName, "Database/passangers_data.json");
+        private string jsonPath = "Database/passangers_data.json";
 
         public void SerializeJson(List<Passanger> list, string path)
         {
-            string jsonText = JsonSerializer.Serialize(list);
+            string jsonText = JsonConvert.SerializeObject(list);
             File.WriteAllText(path, jsonText);
         }
 
         public List<Passanger> DeserializeJson(string path)
         {
             string jsonText = File.ReadAllText(path);
-            Type type = typeof(Passanger);
-
-            List<Passanger> list = (List<Passanger>)JsonSerializer.Deserialize(jsonText, type);
+            List<Passanger> list = JsonConvert.DeserializeObject<List<Passanger>>(jsonText);
             return list;
         }
 
