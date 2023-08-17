@@ -35,6 +35,11 @@ namespace Tickets_reservation_system.Controllers
             return flightRepository.GetAll();
         }
 
+        public List<Flight> GetFlights(string companyName)
+        {
+            return flightRepository.GetFlightsOfCompany(companyName);
+        }
+
         public Flight GetFlight(string flightNumber)
         {
             return flightRepository.GetFlight(flightNumber);
@@ -51,8 +56,7 @@ namespace Tickets_reservation_system.Controllers
 
             foreach(object item in selectedItems)
             {
-                Flight.Days parsedDay;
-                if (Enum.TryParse(item.ToString(), out parsedDay))
+                if (Enum.TryParse(item.ToString(), out Flight.Days parsedDay))
                 {
                     operatingDays.Add(parsedDay);
                 }

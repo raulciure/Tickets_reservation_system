@@ -52,11 +52,11 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Font = new System.Drawing.Font("Wide Latin", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(430, 60);
+            this.label1.Location = new System.Drawing.Point(386, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(557, 31);
+            this.label1.Size = new System.Drawing.Size(545, 31);
             this.label1.TabIndex = 0;
-            this.label1.Text = "MANAGE YOUR FLIGHT";
+            this.label1.Text = "SEARCH FOR FLIGHTS";
             // 
             // label2
             // 

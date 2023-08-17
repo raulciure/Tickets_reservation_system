@@ -23,9 +23,10 @@ namespace Tickets_reservation_system.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (controller.LoginValidation(textBox1.Text, textBox2.Text) == true)
+            Models.Company company;
+            if ((company = controller.LoginValidation(textBox1.Text, textBox2.Text)) != null)
             {
-                Form f = new ManageFlightsView();
+                Form f = new ManageFlightsView(company);
                 f.ShowDialog();
             }
             else

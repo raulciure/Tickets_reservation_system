@@ -58,9 +58,9 @@
             this.priceTextBox = new System.Windows.Forms.TextBox();
             this.operatingDaysCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.companyNameTextBox = new System.Windows.Forms.TextBox();
-            this.planeTailNumberTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.countryOfRegTextBox = new System.Windows.Forms.TextBox();
+            this.planeTailNumberComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -149,6 +149,7 @@
             this.seatsNrTextBox.Location = new System.Drawing.Point(245, 389);
             this.seatsNrTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.seatsNrTextBox.Name = "seatsNrTextBox";
+            this.seatsNrTextBox.ReadOnly = true;
             this.seatsNrTextBox.Size = new System.Drawing.Size(182, 26);
             this.seatsNrTextBox.TabIndex = 12;
             // 
@@ -157,6 +158,7 @@
             this.economySeatsNr.Location = new System.Drawing.Point(245, 435);
             this.economySeatsNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.economySeatsNr.Name = "economySeatsNr";
+            this.economySeatsNr.ReadOnly = true;
             this.economySeatsNr.Size = new System.Drawing.Size(182, 26);
             this.economySeatsNr.TabIndex = 13;
             // 
@@ -220,6 +222,7 @@
             this.bussinessSeatsNr.Location = new System.Drawing.Point(245, 489);
             this.bussinessSeatsNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bussinessSeatsNr.Name = "bussinessSeatsNr";
+            this.bussinessSeatsNr.ReadOnly = true;
             this.bussinessSeatsNr.Size = new System.Drawing.Size(182, 26);
             this.bussinessSeatsNr.TabIndex = 19;
             // 
@@ -228,6 +231,7 @@
             this.firstSeatsNr.Location = new System.Drawing.Point(245, 551);
             this.firstSeatsNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.firstSeatsNr.Name = "firstSeatsNr";
+            this.firstSeatsNr.ReadOnly = true;
             this.firstSeatsNr.Size = new System.Drawing.Size(182, 26);
             this.firstSeatsNr.TabIndex = 20;
             // 
@@ -236,6 +240,7 @@
             this.rangeTextBox.Location = new System.Drawing.Point(245, 606);
             this.rangeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rangeTextBox.Name = "rangeTextBox";
+            this.rangeTextBox.ReadOnly = true;
             this.rangeTextBox.Size = new System.Drawing.Size(182, 26);
             this.rangeTextBox.TabIndex = 21;
             // 
@@ -355,16 +360,9 @@
             this.companyNameTextBox.Location = new System.Drawing.Point(245, 198);
             this.companyNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.companyNameTextBox.Name = "companyNameTextBox";
+            this.companyNameTextBox.ReadOnly = true;
             this.companyNameTextBox.Size = new System.Drawing.Size(182, 26);
             this.companyNameTextBox.TabIndex = 12;
-            // 
-            // planeTailNumberTextBox
-            // 
-            this.planeTailNumberTextBox.Location = new System.Drawing.Point(245, 339);
-            this.planeTailNumberTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.planeTailNumberTextBox.Name = "planeTailNumberTextBox";
-            this.planeTailNumberTextBox.Size = new System.Drawing.Size(182, 26);
-            this.planeTailNumberTextBox.TabIndex = 12;
             // 
             // label14
             // 
@@ -382,8 +380,18 @@
             this.countryOfRegTextBox.Location = new System.Drawing.Point(245, 238);
             this.countryOfRegTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.countryOfRegTextBox.Name = "countryOfRegTextBox";
+            this.countryOfRegTextBox.ReadOnly = true;
             this.countryOfRegTextBox.Size = new System.Drawing.Size(182, 26);
             this.countryOfRegTextBox.TabIndex = 12;
+            // 
+            // planeTailNumberComboBox
+            // 
+            this.planeTailNumberComboBox.FormattingEnabled = true;
+            this.planeTailNumberComboBox.Location = new System.Drawing.Point(246, 339);
+            this.planeTailNumberComboBox.Name = "planeTailNumberComboBox";
+            this.planeTailNumberComboBox.Size = new System.Drawing.Size(181, 28);
+            this.planeTailNumberComboBox.TabIndex = 37;
+            this.planeTailNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.planeTailNumberComboBox_SelectedIndexChanged);
             // 
             // AddFlightView
             // 
@@ -391,6 +399,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Beige;
             this.ClientSize = new System.Drawing.Size(1022, 849);
+            this.Controls.Add(this.planeTailNumberComboBox);
             this.Controls.Add(this.operatingDaysCheckedListBox);
             this.Controls.Add(this.priceTextBox);
             this.Controls.Add(this.label16);
@@ -414,7 +423,6 @@
             this.Controls.Add(this.economySeatsNr);
             this.Controls.Add(this.countryOfRegTextBox);
             this.Controls.Add(this.companyNameTextBox);
-            this.Controls.Add(this.planeTailNumberTextBox);
             this.Controls.Add(this.seatsNrTextBox);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -464,8 +472,8 @@
         private System.Windows.Forms.TextBox priceTextBox;
         private System.Windows.Forms.CheckedListBox operatingDaysCheckedListBox;
         private System.Windows.Forms.TextBox companyNameTextBox;
-        private System.Windows.Forms.TextBox planeTailNumberTextBox;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox countryOfRegTextBox;
+        private System.Windows.Forms.ComboBox planeTailNumberComboBox;
     }
 }

@@ -16,16 +16,20 @@ namespace Tickets_reservation_system.Views
     public partial class ManageFlightsView : Form
     {
         private readonly ManageFlightsController controller = new ManageFlightsController();
+        private readonly Company logedInCompany;
 
-        public ManageFlightsView()
+        internal ManageFlightsView(Company company)
         {
             InitializeComponent();
             dataGridView1.DataSource = controller.GetFlights();
+
+            logedInCompany = company;
+            companyNameLabel.Text = logedInCompany.Name;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = new AddFlightView();
+            Form f = new AddFlightView(logedInCompany);
             f.ShowDialog();
         }
 
@@ -35,7 +39,7 @@ namespace Tickets_reservation_system.Views
 
             if (selectedFlight != null)
             {
-                Form f = new UpdateFlightView(selectedFlight);
+                Form f = new UpdateFlightView(selectedFlight, logedInCompany);
                 f.ShowDialog();
             }
             else

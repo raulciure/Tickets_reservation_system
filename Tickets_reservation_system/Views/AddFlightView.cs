@@ -17,11 +17,36 @@ namespace Tickets_reservation_system.Views
     public partial class AddFlightView : Form
     {
         private readonly ManageFlightsController manageFlightController = new ManageFlightsController();
+        private readonly Company logedInCompany;
 
-        public AddFlightView()
+        internal AddFlightView(Company company)
         {
             InitializeComponent();
             operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Flight.Days));
+
+            logedInCompany = company;
+            LoadData();
+        }
+
+        private void LoadData()
+        {
+            companyNameTextBox.Text = logedInCompany.Name;
+            countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
+
+            List<string> tailNumbers = logedInCompany.Fleet.Select(x => x.TailNumber).ToList();
+
+            planeTailNumberComboBox.DataSource = tailNumbers;
+        }
+
+        private void planeTailNumberComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Plane selectedPlane = logedInCompany.Fleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
+
+            seatsNrTextBox.Text = selectedPlane.SeatsNr.ToString();
+            economySeatsNr.Text = selectedPlane.SeatingConfiguration.EconomySeats.ToString();
+            bussinessSeatsNr.Text = selectedPlane.SeatingConfiguration.BussinessSeats.ToString();
+            firstSeatsNr.Text = selectedPlane.SeatingConfiguration.FirstSeats.ToString();
+            rangeTextBox.Text = selectedPlane.Range.ToString();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,31 +109,34 @@ namespace Tickets_reservation_system.Views
                 MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN");
                 return;
             }
-            if ((companyNameTextBox.Text == "") || (planeTailNumberTextBox.Text == "") || (seatsNrTextBox.Text == "") || (economySeatsNr.Text == "") || (bussinessSeatsNr.Text == "") || (firstSeatsNr.Text == "") || (rangeTextBox.Text == "") || (flightNumberTextBox.Text == "") || (departureAirportTextBox.Text == "") || (arrivalAirportTextBox.Text == "") || (priceTextBox.Text == ""))
+            if ((flightNumberTextBox.Text == "") || (departureAirportTextBox.Text == "") || (arrivalAirportTextBox.Text == "") || (priceTextBox.Text == ""))
             {
                 MessageBox.Show("COMPLETE EMPTY FIELDS");
                 return;
             }
 
-            Company company = new Company
-            {
-                Name = companyNameTextBox.Text,
-                CountryOfRegistration = countryOfRegTextBox.Text
-            };
+            //Company company = new Company
+            //{
+            //    Name = companyNameTextBox.Text,
+            //    CountryOfRegistration = countryOfRegTextBox.Text
+            //};
 
-            Plane plane = new Plane
-            {
-                CompanyName = company.Name,
-                TailNumber = planeTailNumberTextBox.Text,
-                SeatsNr = Int32.Parse(seatsNrTextBox.Text),
-                SeatingConfiguration = new Plane.Seating
-                {
-                    EconomySeats = Int32.Parse(economySeatsNr.Text),
-                    BussinessSeats = Int32.Parse (bussinessSeatsNr.Text),
-                    FirstSeats = Int32.Parse(firstSeatsNr.Text),
-                },
-                Range = Int32.Parse(rangeTextBox.Text)
-            };
+            //Plane plane = new Plane
+            //{
+            //    CompanyName = company.Name,
+            //    TailNumber = planeTailNumberTextBox.Text,
+            //    SeatsNr = Int32.Parse(seatsNrTextBox.Text),
+            //    SeatingConfiguration = new Plane.Seating
+            //    {
+            //        EconomySeats = Int32.Parse(economySeatsNr.Text),
+            //        BussinessSeats = Int32.Parse (bussinessSeatsNr.Text),
+            //        FirstSeats = Int32.Parse(firstSeatsNr.Text),
+            //    },
+            //    Range = Int32.Parse(rangeTextBox.Text)
+            //};
+
+            Company company = logedInCompany;
+            Plane plane = logedInCompany.Fleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
             Flight newFlight = new Flight
             {

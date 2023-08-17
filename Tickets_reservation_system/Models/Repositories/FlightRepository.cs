@@ -24,8 +24,6 @@ namespace Tickets_reservation_system.Models.Repositories
         public List<Flight> DeserializeJson(string path)
         {
             string jsonText = File.ReadAllText(path);
-            //Type type = typeof(Flight);
-
             List<Flight> list = JsonConvert.DeserializeObject<List<Flight>>(jsonText);
             return list;
         }
@@ -56,6 +54,12 @@ namespace Tickets_reservation_system.Models.Repositories
         {
             List<Flight> jsonContent = DeserializeJson(jsonPath);
             return jsonContent.Find(x => x.FlightNumber.Equals(flightNumber));
+        }
+
+        public List<Flight> GetFlightsOfCompany(string companyName)
+        {
+            List<Flight> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent.FindAll(x => x.Company.Name.Equals(companyName));
         }
 
         public List<Flight> GetAll()

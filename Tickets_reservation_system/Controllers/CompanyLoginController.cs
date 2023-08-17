@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tickets_reservation_system.Models;
 using Tickets_reservation_system.Models.Repositories;
 
 namespace Tickets_reservation_system.Controllers
@@ -17,10 +18,15 @@ namespace Tickets_reservation_system.Controllers
         //    new CompanyUser { User = "user2", Password = "efgh"}
         //};
 
-        public bool LoginValidation(string username, string password)
+        public Company LoginValidation(string username, string password)
         {
-            if(companyLoginRepository.GetAll().Find(x => x.Username.Equals(username) && x.Password.Equals(password)) != null) return true;
-            return false;
+            CompanyUser companyUser = companyLoginRepository.GetAll().Find(x => x.Username.Equals(username) && x.Password.Equals(password));
+            if (companyUser != null)
+            {
+                CompanyController companyController = new CompanyController();
+                return companyController.GetCompanyByName(companyUser.Company);
+            }
+            return null;
         }
     }
 }
