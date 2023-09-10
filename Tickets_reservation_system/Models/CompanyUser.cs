@@ -22,7 +22,7 @@ namespace Tickets_reservation_system.Models
 
         public CompanyUser() { }
 
-        public string Company { get => this.companyName; set => this.companyName = value; }
+        public string CompanyName { get => this.companyName; set => this.companyName = value; }
         public string Username { get => this.username; set => this.username = value; }
         public string Password { get => this.password; set => this.password = value; }
     }

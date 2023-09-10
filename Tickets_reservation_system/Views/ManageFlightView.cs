@@ -35,26 +35,32 @@ namespace Tickets_reservation_system.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Flight selectedFlight = (Flight) dataGridView1.CurrentRow.DataBoundItem;
+            if (dataGridView1.CurrentRow != null) // if a row is selected
+            {
+                Flight selectedFlight = (Flight)dataGridView1.CurrentRow.DataBoundItem;
 
-            if (selectedFlight != null)
-            {
-                Form f = new UpdateFlightView(selectedFlight, logedInCompany);
-                f.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("No item selected!", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if (selectedFlight != null)
+                {
+                    Form f = new UpdateFlightView(selectedFlight, logedInCompany);
+                    f.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No item selected!", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Flight removeFlight = (Flight)dataGridView1.CurrentRow.DataBoundItem;
+            if (dataGridView1.CurrentRow != null) // if a row is selected
+            {
+                Flight removeFlight = (Flight)dataGridView1.CurrentRow.DataBoundItem;
 
-            controller.Remove(removeFlight);
+                controller.Remove(removeFlight);
 
-            MessageBox.Show("FLIGHT REMOVED SUCCESSFUL!");
+                MessageBox.Show("FLIGHT REMOVED SUCCESSFUL!");
+            }
         }
     }
 }

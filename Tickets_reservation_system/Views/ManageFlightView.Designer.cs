@@ -53,12 +53,12 @@
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(129, 149);
+            this.dataGridView1.Location = new System.Drawing.Point(137, 163);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(626, 188);
+            this.dataGridView1.Size = new System.Drawing.Size(626, 206);
             this.dataGridView1.TabIndex = 1;
             // 
             // button1
@@ -107,7 +107,7 @@
             // 
             this.companyNameLabel.AutoSize = true;
             this.companyNameLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.companyNameLabel.Location = new System.Drawing.Point(124, 117);
+            this.companyNameLabel.Location = new System.Drawing.Point(340, 105);
             this.companyNameLabel.Name = "companyNameLabel";
             this.companyNameLabel.Size = new System.Drawing.Size(220, 28);
             this.companyNameLabel.TabIndex = 5;
@@ -118,7 +118,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Thistle;
-            this.ClientSize = new System.Drawing.Size(900, 562);
+            this.ClientSize = new System.Drawing.Size(900, 514);
             this.Controls.Add(this.companyNameLabel);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);

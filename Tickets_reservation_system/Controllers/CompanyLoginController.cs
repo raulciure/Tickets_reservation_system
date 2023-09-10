@@ -24,7 +24,7 @@ namespace Tickets_reservation_system.Controllers
             if (companyUser != null)
             {
                 CompanyController companyController = new CompanyController();
-                return companyController.GetCompanyByName(companyUser.Company);
+                return companyController.GetCompanyByName(companyUser.CompanyName);
             }
             return null;
         }
