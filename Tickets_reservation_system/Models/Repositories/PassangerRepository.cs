@@ -6,12 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tickets_reservation_system.Models.Repositories.Utilitaries;
+
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal class PassangerRepository : IPassangerRepository
+    internal class PassangerRepository : Interfaces.IPassangerRepository
     {
-        private string jsonPath = "Database/passangers_data.json";
+        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/passangers_data.json";
 
         public void SerializeJson(List<Passanger> list, string path)
         {

@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Tickets_reservation_system.Models.Repositories.Utilitaries;
+
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal class FlightRepository : IFlightRepository
+    internal class FlightRepository : Interfaces.IFlightRepository
     {
-        private string jsonPath = "Database/flights_data.json";
+        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/flights_data.json";
 
         public void SerializeJson(List<Flight> list, string path)
         {

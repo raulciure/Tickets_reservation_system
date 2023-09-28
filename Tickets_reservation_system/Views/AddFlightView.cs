@@ -56,62 +56,37 @@ namespace Tickets_reservation_system.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!Regex.Match(seatsNrTextBox.Text, "^[0-9]*$").Success)
+            if (departureAirportTextBox.Text == "")
             {
-                MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
+                MessageBox.Show("ADD A VALID AIRPORT NAME", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 companyNameTextBox.Focus();
                 return;
             }
-            if (!Regex.Match(economySeatsNr.Text, "^[0-9]*$").Success)
+            if (arrivalAirportTextBox.Text == "")
             {
-                MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
+                MessageBox.Show("ADD A VALID AIRPORT NAME", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 companyNameTextBox.Focus();
                 return;
             }
-            if (!Regex.Match(bussinessSeatsNr.Text, "^[0-9]*$").Success)
+            if (!Regex.Match(priceTextBox.Text, "^[1-9]([0-9]*)$").Success)
             {
-                MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
-                companyNameTextBox.Focus();
-                return;
-            }
-            if (!Regex.Match(firstSeatsNr.Text, "^[0-9]*$").Success)
-            {
-                MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
-                companyNameTextBox.Focus();
-                return;
-            }
-            if (!Regex.Match(rangeTextBox.Text, "^[1-9]*$").Success)
-            {
-                MessageBox.Show("ADD A VALID RANGE");
-                companyNameTextBox.Focus();
-                return;
-            }
-            if (!Regex.Match(departureAirportTextBox.Text, "^[a-zA-Z]*$").Success)
-            {
-                MessageBox.Show("ADD A VALID AIRPORT NAME");
-                companyNameTextBox.Focus();
-                return;
-            }
-            if (!Regex.Match(arrivalAirportTextBox.Text, "^[a-zA-Z]*$").Success)
-            {
-                MessageBox.Show("ADD A VALID AIRPORT NAME");
-                companyNameTextBox.Focus();
-                return;
-            }
-            if (!Regex.Match(priceTextBox.Text, "^[1-9]*$").Success)
-            {
-                MessageBox.Show("ADD A VALID PRICE");
+                MessageBox.Show("ADD A VALID PRICE", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 companyNameTextBox.Focus();
                 return;
             }
             if(departureTimeDateTimePicker.Value > arrivalTimeDateTimePicker.Value)
             {
-                MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN");
+                MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if ((flightNumberTextBox.Text == "") || (departureAirportTextBox.Text == "") || (arrivalAirportTextBox.Text == "") || (priceTextBox.Text == ""))
             {
-                MessageBox.Show("COMPLETE EMPTY FIELDS");
+                MessageBox.Show("COMPLETE EMPTY FIELDS", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(operatingDaysCheckedListBox.CheckedItems.Count == 0)
+            {
+                MessageBox.Show("SELECT OPERATING DAYS", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -154,7 +129,7 @@ namespace Tickets_reservation_system.Views
 
             manageFlightController.Add(newFlight);
             
-            MessageBox.Show("SAVED SUCCESSFUL!");
+            MessageBox.Show("SAVED SUCCESSFUL!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

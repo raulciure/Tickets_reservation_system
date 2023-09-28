@@ -1,0 +1,56 @@
+[
+    {
+        "name": "Lufthansa",
+        "fleet": 
+        [
+            {
+                "companyName": "Lufthansa",
+                "name": "Boeing 737-800MAX",
+                "tailNumber": "N762QT",
+                "seatsNr": "136",
+                "seatingConfiguration": 
+                {
+                    "EconomySeats": "110",
+                    "BussinessSeats": "26",
+                    "FirstSeats": "0"
+                },
+                "range": "7800"
+            },
+            {
+                "companyName": "Lufthansa",
+                "name": "Airbus A320neo",
+                "tailNumber": "OP246D",
+                "seatsNr": "140",
+                "seatingConfiguration":
+                {
+                    "EconomySeats": "100",
+                    "BussinessSeats": "30",
+                    "FirstSeats": "10"
+                },
+                "range": "8120"
+            }
+
+        ],
+        "countryOfRegistration": "Germany"
+    },
+    {
+        "name": "KLM",
+        "fleet":
+        [
+            {
+                "companyName": "KLM",
+                "name": "Boeing 777-300ER",
+                "tailNumber": "B34YU2",
+                "seatsNr": "396",
+                "seatingConfiguration":
+                {
+                    "EconomySeats": "280",
+                    "BussinessSeats": "70",
+                    "FirstSeats": "46"
+                },
+                "range": "17300"
+            }
+        ],
+        "countryOfRegistration": "Netherlands"
+    }
+]

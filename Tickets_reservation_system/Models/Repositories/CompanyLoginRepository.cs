@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using Tickets_reservation_system.Models.Repositories.Utilitaries;
+
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal class CompanyLoginRepository : ICompanyLoginRepository
+    internal class CompanyLoginRepository : Interfaces.ICompanyLoginRepository
     {
-        private string jsonPath = "Database/companies_users_data.json";
+        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/companies_users_data.json";
 
         public void SerializeJson(List<CompanyUser> list, string path)
         {

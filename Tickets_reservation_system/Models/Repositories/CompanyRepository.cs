@@ -10,12 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Tickets_reservation_system.Models.Repositories.Utilitaries;
+
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal class CompanyRepository : ICompanyRepository
+    internal class CompanyRepository : Interfaces.ICompanyRepository
     {
-        private string jsonPath = "Database/companies_data.json";
+        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/companies_data.json";
 
         public void SerializeJson(List<Company> list, string path)
         {
