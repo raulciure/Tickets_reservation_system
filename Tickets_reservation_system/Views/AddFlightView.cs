@@ -18,29 +18,40 @@ namespace Tickets_reservation_system.Views
     {
         private readonly ManageFlightsController manageFlightController = new ManageFlightsController();
         private readonly Company logedInCompany;
+        private List<Plane> companyFleet;
 
         internal AddFlightView(Company company)
         {
-            InitializeComponent();
-            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Flight.Days));
-
             logedInCompany = company;
+            LoadCompanyFleet();
+
+            InitializeComponent();
+
             LoadData();
         }
 
         private void LoadData()
         {
+            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Flight.Days));
             companyNameTextBox.Text = logedInCompany.Name;
             countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
 
-            List<string> tailNumbers = logedInCompany.Fleet.Select(x => x.TailNumber).ToList();
+            List<string> tailNumbers = logedInCompany.Fleet;
 
             planeTailNumberComboBox.DataSource = tailNumbers;
         }
 
+        private void LoadCompanyFleet()
+        {
+            PlaneController planeController = new PlaneController();
+
+            companyFleet = planeController.GetPlanesByCompany(logedInCompany);
+        }
+
         private void planeTailNumberComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Plane selectedPlane = logedInCompany.Fleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
+            //string selectedPlaneTailNumber = planeTailNumberComboBox.SelectedItem.ToString();
+            Plane selectedPlane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
             seatsNrTextBox.Text = selectedPlane.SeatsNr.ToString();
             economySeatsNr.Text = selectedPlane.SeatingConfiguration.EconomySeats.ToString();
@@ -111,7 +122,7 @@ namespace Tickets_reservation_system.Views
             //};
 
             Company company = logedInCompany;
-            Plane plane = logedInCompany.Fleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
+            Plane plane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
             Flight newFlight = new Flight
             {
@@ -123,8 +134,8 @@ namespace Tickets_reservation_system.Views
                 FlightTime = manageFlightController.GetFlightTime(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value),
                 OperatingDays = manageFlightController.GetOperatingDays(operatingDaysCheckedListBox.SelectedItems),
                 Price = Int32.Parse(priceTextBox.Text),
-                Company = company,
-                Plane = plane
+                CompanyName = company.Name,
+                PlaneTailNumber = plane.TailNumber
             };
 
             manageFlightController.Add(newFlight);

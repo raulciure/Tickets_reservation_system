@@ -17,14 +17,17 @@ namespace Tickets_reservation_system.Views
     {
         private readonly ManageFlightsController controller = new ManageFlightsController();
         private readonly Company logedInCompany;
+        private readonly CompanyUser loggedInUser;
 
-        internal ManageFlightsView(Company company)
+        internal ManageFlightsView(Company company, CompanyUser user)
         {
             InitializeComponent();
             dataGridView1.DataSource = controller.GetFlights();
 
             logedInCompany = company;
+            loggedInUser = user;
             companyNameLabel.Text = logedInCompany.Name;
+            userNameLabel.Text = "User: " + loggedInUser.Username;
         }
 
         private void button1_Click(object sender, EventArgs e)

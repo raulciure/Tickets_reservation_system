@@ -21,8 +21,9 @@ namespace Tickets_reservation_system.Testing
             {
                 Name = "TestName",
                 CountryOfRegistration = "TestCOR",
-                Fleet = new List<Plane>()
-                {
+                Fleet = new List<string>() { "N7862S", "N2113R" }
+
+                /*{
                     new Plane()
                     {
                         CompanyName = "TestName",
@@ -41,7 +42,7 @@ namespace Tickets_reservation_system.Testing
                         SeatingConfiguration = new Plane.Seating { FirstSeats = 0, BussinessSeats = 0, EconomySeats = 128 },
                         Range = 6200
                     }
-                }
+                }*/
             };
 
             companyRepository.Add(insertCompany);

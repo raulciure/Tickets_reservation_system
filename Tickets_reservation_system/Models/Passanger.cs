@@ -14,17 +14,17 @@ namespace Tickets_reservation_system.Models
         private string email;
         private string phoneNumber;
         private int age;
-        private string idSerialNumber;
+        private string id;
 
         public Passanger(string firstName, string lastName, string email,
-            string phoneNumber, int age, string idSerialNumber)
+            string phoneNumber, int age, string id)
         {
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
             this.phoneNumber = phoneNumber;
             this.age = age;
-            this.idSerialNumber = idSerialNumber;
+            this.id = id;
         }
 
         public Passanger() { }
@@ -34,6 +34,6 @@ namespace Tickets_reservation_system.Models
         public string Email { get => this.email; set => this.email = value; }
         public string PhoneNumber { get => this.phoneNumber; set => this.phoneNumber = value; }
         public int Age { get => this.age; set => this.age = value; }
-        public string IdSerialNumber { get => this.idSerialNumber; set => this.idSerialNumber = value; }
+        public string Id { get => this.id; set => this.id = value; }
     }
 }

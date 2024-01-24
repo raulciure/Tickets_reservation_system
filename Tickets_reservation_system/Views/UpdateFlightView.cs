@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -20,14 +19,18 @@ namespace Tickets_reservation_system.Views
 
         private Flight toUpdateFlight;
         private readonly Company logedInCompany;
+        private List<Plane> companyFleet;
 
         internal UpdateFlightView(Flight flight, Company company)
         {
+            logedInCompany = company;
+            LoadCompanyFleet();
+
             InitializeComponent();
+
             this.toUpdateFlight = flight;
             dataGridView1.DataSource = this.toUpdateFlight;
-
-            logedInCompany = company;
+            
             LoadData();
         }
 
@@ -36,14 +39,21 @@ namespace Tickets_reservation_system.Views
             companyNameTextBox.Text = logedInCompany.Name;
             countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
 
-            List<string> tailNumbers = logedInCompany.Fleet.Select(x => x.TailNumber).ToList();
+            List<string> tailNumbers = logedInCompany.Fleet;
             
             planeTailNumberComboBox.DataSource = tailNumbers;
         }
 
+        private void LoadCompanyFleet()
+        {
+            PlaneController planeController = new PlaneController();
+
+            companyFleet = planeController.GetPlanesByCompany(logedInCompany);
+        }
+
         private void planeTailNumberComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Models.Plane selectedPlane = logedInCompany.Fleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
+            Plane selectedPlane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
             seatsNrTextBox.Text = selectedPlane.SeatsNr.ToString();
             economySeatsNrTextBox.Text = selectedPlane.SeatingConfiguration.EconomySeats.ToString();
@@ -139,7 +149,7 @@ namespace Tickets_reservation_system.Views
             //};
 
             Company newCompany = logedInCompany;
-            Models.Plane newPlane = logedInCompany.Fleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
+            Plane newPlane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
             Flight newFlight = new Flight
             {
@@ -151,8 +161,8 @@ namespace Tickets_reservation_system.Views
                 FlightTime = manageFlightsController.GetFlightTime(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value),
                 OperatingDays = manageFlightsController.GetOperatingDays(operatingDaysCheckedListBox.SelectedItems),
                 Price = Int32.Parse(priceTextBox.Text),
-                Company = newCompany,
-                Plane = newPlane
+                CompanyName = newCompany.Name,
+                PlaneTailNumber = newPlane.TailNumber
             };
 
             MessageBox.Show("SAVED SUCCESSFUL!");

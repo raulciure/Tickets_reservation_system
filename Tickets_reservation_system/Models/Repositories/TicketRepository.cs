@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Tickets_reservation_system.Models.Repositories.Utilitaries;
 
 
@@ -24,8 +25,18 @@ namespace Tickets_reservation_system.Models.Repositories
         public List<Ticket> DeserializeJson(string path)
         {
             string jsonText = File.ReadAllText(path);
-            List<Ticket> list = JsonConvert.DeserializeObject<List<Ticket>>(jsonText);
-            return list;
+
+            try
+            {
+                List<Ticket> list = JsonConvert.DeserializeObject<List<Ticket>>(jsonText);
+                return list;
+            }
+            catch
+            {
+                MessageBox.Show("Json deserialization problem!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
         }
 
         public void Add(Ticket obj)
@@ -56,10 +67,10 @@ namespace Tickets_reservation_system.Models.Repositories
             return jsonContent.Find(x =>  x.TicketId.Equals(ticketId));
         }
 
-        public void DeleteTicketByPassangerIdSerialNumber(string idSerialNumber)
+        public void DeleteTicketByPassangerId(string id)
         {
             List<Ticket> jsonContent = DeserializeJson(jsonPath);
-            jsonContent.RemoveAll(x => x.Passanger.IdSerialNumber.Equals(idSerialNumber));
+            jsonContent.RemoveAll(x => x.PassangerId.Equals(id));
             SerializeJson(jsonContent, jsonPath);
         }
     }

@@ -8,6 +8,6 @@ namespace Tickets_reservation_system.Models.Repositories.Interfaces
 {
     internal interface IPassangerRepository : IRepository<Passanger>
     {
-        Passanger GetPassanger(string idSerialNumber);
+        Passanger GetPassanger(string id);
     }
 }

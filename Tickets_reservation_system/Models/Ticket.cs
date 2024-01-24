@@ -9,23 +9,23 @@ namespace Tickets_reservation_system.Models
     [Serializable]
     internal class Ticket
     {
-        private Flight flight;
-        private Passanger passanger;
+        private string flightNumber;
+        private string passangerId;
         private int ticketId;
         private string seatNr;
 
-        public Ticket(Flight flight, Passanger passanger, int ticketId, string seatNr)
+        public Ticket(string flightNumber, string passangerId, int ticketId, string seatNr)
         {
-            this.flight = flight;
-            this.passanger = passanger;
+            this.flightNumber = flightNumber;
+            this.passangerId = passangerId;
             this.ticketId = ticketId;
             this.seatNr = seatNr;
         }
 
         public Ticket() { }
 
-        public Flight Flight { get => this.flight; set => this.flight = value; }
-        public Passanger Passanger { get => this.passanger; set => this.passanger = value; }
+        public string FlightNumber { get => this.flightNumber; set => this.flightNumber = value; }
+        public string PassangerId { get => this.passangerId; set => this.passangerId = value; }
         public int TicketId { get => this.ticketId; set => this.ticketId = value; }
         public string SeatNr { get => this.seatNr; set => this.seatNr = value; }
     }

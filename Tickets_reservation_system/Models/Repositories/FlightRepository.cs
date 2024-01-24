@@ -26,8 +26,18 @@ namespace Tickets_reservation_system.Models.Repositories
         public List<Flight> DeserializeJson(string path)
         {
             string jsonText = File.ReadAllText(path);
-            List<Flight> list = JsonConvert.DeserializeObject<List<Flight>>(jsonText);
-            return list;
+
+            try
+            {
+                List<Flight> list = JsonConvert.DeserializeObject<List<Flight>>(jsonText);
+                return list;
+            }
+            catch
+            {
+                MessageBox.Show("Json deserialization problem!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+            return null;
         }
 
         public void Add(Flight obj)
@@ -61,7 +71,7 @@ namespace Tickets_reservation_system.Models.Repositories
         public List<Flight> GetFlightsOfCompany(string companyName)
         {
             List<Flight> jsonContent = DeserializeJson(jsonPath);
-            return jsonContent.FindAll(x => x.Company.Name.Equals(companyName));
+            return jsonContent.FindAll(x => x.CompanyName.Equals(companyName));
         }
 
         public List<Flight> GetAll()

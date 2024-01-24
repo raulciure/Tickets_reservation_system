@@ -28,8 +28,18 @@ namespace Tickets_reservation_system.Models.Repositories
         public List<Company> DeserializeJson(string path)
         {
             string jsonText = File.ReadAllText(path);
-            List<Company> list = JsonConvert.DeserializeObject<List<Company>>(jsonText);
-            return list;
+
+            try
+            {
+                List<Company> list = JsonConvert.DeserializeObject<List<Company>>(jsonText);
+                return list;
+            }
+            catch
+            {
+                MessageBox.Show("Json deserialization problem!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return null;
         }
 
         public void Add(Company obj)

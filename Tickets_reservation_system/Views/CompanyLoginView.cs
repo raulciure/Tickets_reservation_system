@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Tickets_reservation_system.Controllers;
+using Tickets_reservation_system.Models;
 
 namespace Tickets_reservation_system.Views
 {
@@ -23,10 +24,14 @@ namespace Tickets_reservation_system.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Models.Company company;
-            if ((company = controller.LoginValidation(textBox1.Text, textBox2.Text)) != null)
+            Tuple<Company, CompanyUser> combinedTuple = controller.LoginValidation(textBox1.Text, textBox2.Text);
+
+            Models.Company company = combinedTuple.Item1;
+            Models.CompanyUser user = combinedTuple.Item2;
+
+            if (company != null)
             {
-                Form f = new ManageFlightsView(company);
+                Form f = new ManageFlightsView(company, user);
                 f.ShowDialog();
             }
             else

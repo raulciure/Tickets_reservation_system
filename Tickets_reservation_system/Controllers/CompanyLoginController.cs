@@ -18,13 +18,13 @@ namespace Tickets_reservation_system.Controllers
         //    new CompanyUser { User = "user2", Password = "efgh"}
         //};
 
-        public Company LoginValidation(string username, string password)
+        public Tuple<Company, CompanyUser> LoginValidation(string username, string password)
         {
             CompanyUser companyUser = companyLoginRepository.GetAll().Find(x => x.Username.Equals(username) && x.Password.Equals(password));
             if (companyUser != null)
             {
                 CompanyController companyController = new CompanyController();
-                return companyController.GetCompanyByName(companyUser.CompanyName);
+                return Tuple.Create(companyController.GetCompanyByName(companyUser.CompanyName), companyUser);
             }
             return null;
         }
