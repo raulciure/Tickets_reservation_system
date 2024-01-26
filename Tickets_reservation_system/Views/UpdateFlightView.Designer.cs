@@ -64,6 +64,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.countryOfRegTextBox = new System.Windows.Forms.TextBox();
             this.planeTailNumberComboBox = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.planeNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +145,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label19.Location = new System.Drawing.Point(540, 533);
+            this.label19.Location = new System.Drawing.Point(551, 568);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(77, 20);
             this.label19.TabIndex = 76;
@@ -153,7 +155,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label20.Location = new System.Drawing.Point(431, 482);
+            this.label20.Location = new System.Drawing.Point(436, 514);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(192, 20);
             this.label20.TabIndex = 75;
@@ -163,7 +165,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label21.Location = new System.Drawing.Point(396, 428);
+            this.label21.Location = new System.Drawing.Point(397, 464);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(231, 20);
             this.label21.TabIndex = 74;
@@ -173,7 +175,7 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label22.Location = new System.Drawing.Point(396, 369);
+            this.label22.Location = new System.Drawing.Point(400, 405);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(228, 20);
             this.label22.TabIndex = 69;
@@ -183,7 +185,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label23.Location = new System.Drawing.Point(406, 321);
+            this.label23.Location = new System.Drawing.Point(415, 352);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(213, 20);
             this.label23.TabIndex = 68;
@@ -193,7 +195,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label24.Location = new System.Drawing.Point(402, 269);
+            this.label24.Location = new System.Drawing.Point(402, 264);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(226, 20);
             this.label24.TabIndex = 67;
@@ -231,6 +233,8 @@
             // 
             // arrivalTimeDateTimePicker
             // 
+            this.arrivalTimeDateTimePicker.CustomFormat = "dd/MM --> HH:mm";
+            this.arrivalTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.arrivalTimeDateTimePicker.Location = new System.Drawing.Point(1073, 342);
             this.arrivalTimeDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.arrivalTimeDateTimePicker.Name = "arrivalTimeDateTimePicker";
@@ -239,6 +243,8 @@
             // 
             // departureTimeDateTimePicker
             // 
+            this.departureTimeDateTimePicker.CustomFormat = "dd/MM --> HH:mm";
+            this.departureTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.departureTimeDateTimePicker.Location = new System.Drawing.Point(1073, 298);
             this.departureTimeDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.departureTimeDateTimePicker.Name = "departureTimeDateTimePicker";
@@ -306,7 +312,7 @@
             // 
             // seatsNrTextBox
             // 
-            this.seatsNrTextBox.Location = new System.Drawing.Point(634, 313);
+            this.seatsNrTextBox.Location = new System.Drawing.Point(634, 349);
             this.seatsNrTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.seatsNrTextBox.Name = "seatsNrTextBox";
             this.seatsNrTextBox.ReadOnly = true;
@@ -315,7 +321,7 @@
             // 
             // economySeatsNrTextBox
             // 
-            this.economySeatsNrTextBox.Location = new System.Drawing.Point(634, 366);
+            this.economySeatsNrTextBox.Location = new System.Drawing.Point(634, 402);
             this.economySeatsNrTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.economySeatsNrTextBox.Name = "economySeatsNrTextBox";
             this.economySeatsNrTextBox.ReadOnly = true;
@@ -324,7 +330,7 @@
             // 
             // bussinessSeatsNrTextBox
             // 
-            this.bussinessSeatsNrTextBox.Location = new System.Drawing.Point(634, 425);
+            this.bussinessSeatsNrTextBox.Location = new System.Drawing.Point(634, 461);
             this.bussinessSeatsNrTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bussinessSeatsNrTextBox.Name = "bussinessSeatsNrTextBox";
             this.bussinessSeatsNrTextBox.ReadOnly = true;
@@ -333,7 +339,7 @@
             // 
             // firstSeatsNrTextBox
             // 
-            this.firstSeatsNrTextBox.Location = new System.Drawing.Point(634, 475);
+            this.firstSeatsNrTextBox.Location = new System.Drawing.Point(634, 511);
             this.firstSeatsNrTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.firstSeatsNrTextBox.Name = "firstSeatsNrTextBox";
             this.firstSeatsNrTextBox.ReadOnly = true;
@@ -342,7 +348,7 @@
             // 
             // rangeTextBox
             // 
-            this.rangeTextBox.Location = new System.Drawing.Point(634, 529);
+            this.rangeTextBox.Location = new System.Drawing.Point(634, 565);
             this.rangeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rangeTextBox.Name = "rangeTextBox";
             this.rangeTextBox.ReadOnly = true;
@@ -417,6 +423,25 @@
             this.planeTailNumberComboBox.TabIndex = 109;
             this.planeTailNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.planeTailNumberComboBox_SelectedIndexChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(557, 308);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(71, 20);
+            this.label5.TabIndex = 68;
+            this.label5.Text = "PLANE:";
+            // 
+            // planeNameTextBox
+            // 
+            this.planeNameTextBox.Location = new System.Drawing.Point(634, 305);
+            this.planeNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.planeNameTextBox.Name = "planeNameTextBox";
+            this.planeNameTextBox.ReadOnly = true;
+            this.planeNameTextBox.Size = new System.Drawing.Size(200, 26);
+            this.planeNameTextBox.TabIndex = 98;
+            // 
             // UpdateFlightView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -433,6 +458,7 @@
             this.Controls.Add(this.firstSeatsNrTextBox);
             this.Controls.Add(this.bussinessSeatsNrTextBox);
             this.Controls.Add(this.economySeatsNrTextBox);
+            this.Controls.Add(this.planeNameTextBox);
             this.Controls.Add(this.seatsNrTextBox);
             this.Controls.Add(this.countryOfRegTextBox);
             this.Controls.Add(this.companyNameTextBox);
@@ -448,6 +474,7 @@
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label21);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.label4);
@@ -461,7 +488,8 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UpdateFlightView";
-            this.Text = "UpdateFlightView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Update flight";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -506,5 +534,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox countryOfRegTextBox;
         private System.Windows.Forms.ComboBox planeTailNumberComboBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox planeNameTextBox;
     }
 }

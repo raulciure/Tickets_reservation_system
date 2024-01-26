@@ -49,12 +49,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label1.Font = new System.Drawing.Font("Wide Latin", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Impact", 28F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(386, 60);
+            this.label1.Location = new System.Drawing.Point(418, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(545, 31);
+            this.label1.Size = new System.Drawing.Size(479, 68);
             this.label1.TabIndex = 0;
             this.label1.Text = "SEARCH FOR FLIGHTS";
             // 
@@ -261,7 +260,8 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "SearchFlightView";
-            this.Text = "SearchFlightView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Search flights";
             this.ResumeLayout(false);
             this.PerformLayout();
 

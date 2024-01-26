@@ -22,7 +22,7 @@ namespace Tickets_reservation_system.Views
         internal ManageFlightsView(Company company, CompanyUser user)
         {
             InitializeComponent();
-            dataGridView1.DataSource = controller.GetFlights();
+            LoadData();
 
             logedInCompany = company;
             loggedInUser = user;
@@ -30,10 +30,17 @@ namespace Tickets_reservation_system.Views
             userNameLabel.Text = "User: " + loggedInUser.Username;
         }
 
+        private void LoadData()
+        {
+            dataGridView1.DataSource = controller.GetFlights();
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             Form f = new AddFlightView(logedInCompany);
-            f.ShowDialog();
+            
+            var status = f.ShowDialog();
+            if(status == DialogResult.OK) LoadData();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -45,7 +52,9 @@ namespace Tickets_reservation_system.Views
                 if (selectedFlight != null)
                 {
                     Form f = new UpdateFlightView(selectedFlight, logedInCompany);
-                    f.ShowDialog();
+
+                    var status = f.ShowDialog();
+                    if (status == DialogResult.OK) LoadData();
                 }
                 else
                 {
@@ -63,6 +72,8 @@ namespace Tickets_reservation_system.Views
                 controller.Remove(removeFlight);
 
                 MessageBox.Show("FLIGHT REMOVED SUCCESSFUL!");
+                
+                LoadData();
             }
         }
     }

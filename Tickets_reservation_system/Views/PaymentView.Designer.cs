@@ -204,7 +204,8 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "PaymentView";
-            this.Text = "PaymentView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Payment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

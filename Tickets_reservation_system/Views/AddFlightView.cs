@@ -32,7 +32,7 @@ namespace Tickets_reservation_system.Views
 
         private void LoadData()
         {
-            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Flight.Days));
+            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Days));
             companyNameTextBox.Text = logedInCompany.Name;
             countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
 
@@ -53,6 +53,7 @@ namespace Tickets_reservation_system.Views
             //string selectedPlaneTailNumber = planeTailNumberComboBox.SelectedItem.ToString();
             Plane selectedPlane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
+            planeNameTextBox.Text = selectedPlane.Name;
             seatsNrTextBox.Text = selectedPlane.SeatsNr.ToString();
             economySeatsNr.Text = selectedPlane.SeatingConfiguration.EconomySeats.ToString();
             bussinessSeatsNr.Text = selectedPlane.SeatingConfiguration.BussinessSeats.ToString();
@@ -62,6 +63,7 @@ namespace Tickets_reservation_system.Views
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
 
@@ -85,9 +87,9 @@ namespace Tickets_reservation_system.Views
                 companyNameTextBox.Focus();
                 return;
             }
-            if(departureTimeDateTimePicker.Value > arrivalTimeDateTimePicker.Value)
+            if(DateTime.Compare(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value) >= 0)
             {
-                MessageBox.Show("DATE OF DEPARTURE CAN NOT BE LESS THAN DATE OF RETURN", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("DATE/TIME OF DEPARTURE CAN NOT BE LESS/EQUAL THAN DATE OF ARRIVAL", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if ((flightNumberTextBox.Text == "") || (departureAirportTextBox.Text == "") || (arrivalAirportTextBox.Text == "") || (priceTextBox.Text == ""))
@@ -141,6 +143,9 @@ namespace Tickets_reservation_system.Views
             manageFlightController.Add(newFlight);
             
             MessageBox.Show("SAVED SUCCESSFUL!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }

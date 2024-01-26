@@ -61,6 +61,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.countryOfRegTextBox = new System.Windows.Forms.TextBox();
             this.planeTailNumberComboBox = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.planeNameTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -90,7 +92,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(13, 339);
+            this.label3.Location = new System.Drawing.Point(13, 344);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(226, 20);
             this.label3.TabIndex = 2;
@@ -127,7 +129,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.Blue;
-            this.label4.Location = new System.Drawing.Point(29, 389);
+            this.label4.Location = new System.Drawing.Point(25, 441);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(213, 20);
             this.label4.TabIndex = 8;
@@ -138,7 +140,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.Blue;
-            this.label5.Location = new System.Drawing.Point(19, 438);
+            this.label5.Location = new System.Drawing.Point(10, 487);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(228, 20);
             this.label5.TabIndex = 9;
@@ -146,7 +148,7 @@
             // 
             // seatsNrTextBox
             // 
-            this.seatsNrTextBox.Location = new System.Drawing.Point(245, 389);
+            this.seatsNrTextBox.Location = new System.Drawing.Point(246, 438);
             this.seatsNrTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.seatsNrTextBox.Name = "seatsNrTextBox";
             this.seatsNrTextBox.ReadOnly = true;
@@ -155,7 +157,7 @@
             // 
             // economySeatsNr
             // 
-            this.economySeatsNr.Location = new System.Drawing.Point(245, 435);
+            this.economySeatsNr.Location = new System.Drawing.Point(246, 484);
             this.economySeatsNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.economySeatsNr.Name = "economySeatsNr";
             this.economySeatsNr.ReadOnly = true;
@@ -167,7 +169,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.Blue;
-            this.label6.Location = new System.Drawing.Point(17, 489);
+            this.label6.Location = new System.Drawing.Point(4, 536);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(231, 20);
             this.label6.TabIndex = 14;
@@ -178,7 +180,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.Blue;
-            this.label7.Location = new System.Drawing.Point(53, 555);
+            this.label7.Location = new System.Drawing.Point(43, 581);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(192, 20);
             this.label7.TabIndex = 15;
@@ -189,7 +191,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.Blue;
-            this.label8.Location = new System.Drawing.Point(163, 609);
+            this.label8.Location = new System.Drawing.Point(156, 623);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(77, 20);
             this.label8.TabIndex = 16;
@@ -219,7 +221,7 @@
             // 
             // bussinessSeatsNr
             // 
-            this.bussinessSeatsNr.Location = new System.Drawing.Point(245, 489);
+            this.bussinessSeatsNr.Location = new System.Drawing.Point(246, 533);
             this.bussinessSeatsNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.bussinessSeatsNr.Name = "bussinessSeatsNr";
             this.bussinessSeatsNr.ReadOnly = true;
@@ -228,7 +230,7 @@
             // 
             // firstSeatsNr
             // 
-            this.firstSeatsNr.Location = new System.Drawing.Point(245, 551);
+            this.firstSeatsNr.Location = new System.Drawing.Point(246, 578);
             this.firstSeatsNr.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.firstSeatsNr.Name = "firstSeatsNr";
             this.firstSeatsNr.ReadOnly = true;
@@ -237,7 +239,7 @@
             // 
             // rangeTextBox
             // 
-            this.rangeTextBox.Location = new System.Drawing.Point(245, 606);
+            this.rangeTextBox.Location = new System.Drawing.Point(244, 620);
             this.rangeTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rangeTextBox.Name = "rangeTextBox";
             this.rangeTextBox.ReadOnly = true;
@@ -303,6 +305,8 @@
             // 
             // departureTimeDateTimePicker
             // 
+            this.departureTimeDateTimePicker.CustomFormat = "dd/MM --> HH:mm";
+            this.departureTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.departureTimeDateTimePicker.Location = new System.Drawing.Point(727, 339);
             this.departureTimeDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.departureTimeDateTimePicker.Name = "departureTimeDateTimePicker";
@@ -311,6 +315,8 @@
             // 
             // arrivalTimeDateTimePicker
             // 
+            this.arrivalTimeDateTimePicker.CustomFormat = "dd/MM --> HH:mm";
+            this.arrivalTimeDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.arrivalTimeDateTimePicker.Location = new System.Drawing.Point(727, 392);
             this.arrivalTimeDateTimePicker.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.arrivalTimeDateTimePicker.Name = "arrivalTimeDateTimePicker";
@@ -393,6 +399,26 @@
             this.planeTailNumberComboBox.TabIndex = 37;
             this.planeTailNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.planeTailNumberComboBox_SelectedIndexChanged);
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.ForeColor = System.Drawing.Color.Blue;
+            this.label17.Location = new System.Drawing.Point(164, 395);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(71, 20);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "PLANE:";
+            // 
+            // planeNameTextBox
+            // 
+            this.planeNameTextBox.Location = new System.Drawing.Point(246, 390);
+            this.planeNameTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.planeNameTextBox.Name = "planeNameTextBox";
+            this.planeNameTextBox.ReadOnly = true;
+            this.planeNameTextBox.Size = new System.Drawing.Size(182, 26);
+            this.planeNameTextBox.TabIndex = 12;
+            // 
             // AddFlightView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -423,8 +449,10 @@
             this.Controls.Add(this.economySeatsNr);
             this.Controls.Add(this.countryOfRegTextBox);
             this.Controls.Add(this.companyNameTextBox);
+            this.Controls.Add(this.planeNameTextBox);
             this.Controls.Add(this.seatsNrTextBox);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.label17);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -434,7 +462,8 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "AddFlightView";
-            this.Text = "AddFlightView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Add flight";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -475,5 +504,7 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox countryOfRegTextBox;
         private System.Windows.Forms.ComboBox planeTailNumberComboBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox planeNameTextBox;
     }
 }

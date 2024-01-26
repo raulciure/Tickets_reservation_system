@@ -50,13 +50,13 @@ namespace Tickets_reservation_system.Controllers
             return (arrivalTime - departureTime);
         }
 
-        public List<Flight.Days> GetOperatingDays(ListBox.SelectedObjectCollection selectedItems)
+        public List<Days> GetOperatingDays(ListBox.SelectedObjectCollection selectedItems)
         {
-            List<Flight.Days> operatingDays = new List<Flight.Days>();
+            List<Days> operatingDays = new List<Days>();
 
             foreach(object item in selectedItems)
             {
-                if (Enum.TryParse(item.ToString(), out Flight.Days parsedDay))
+                if (Enum.TryParse(item.ToString(), out Days parsedDay))
                 {
                     operatingDays.Add(parsedDay);
                 }

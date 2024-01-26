@@ -36,6 +36,7 @@ namespace Tickets_reservation_system.Views
 
         private void LoadData()
         {
+            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Days));
             companyNameTextBox.Text = logedInCompany.Name;
             countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
 
@@ -55,6 +56,7 @@ namespace Tickets_reservation_system.Views
         {
             Plane selectedPlane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 
+            planeNameTextBox.Text = selectedPlane.Name;
             seatsNrTextBox.Text = selectedPlane.SeatsNr.ToString();
             economySeatsNrTextBox.Text = selectedPlane.SeatingConfiguration.EconomySeats.ToString();
             bussinessSeatsNrTextBox.Text = selectedPlane.SeatingConfiguration.BussinessSeats.ToString();
@@ -166,10 +168,14 @@ namespace Tickets_reservation_system.Views
             };
 
             MessageBox.Show("SAVED SUCCESSFUL!");
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

@@ -96,7 +96,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 50);
             this.button1.TabIndex = 5;
-            this.button1.Text = "SIGN IN";
+            this.button1.Text = "LOG IN";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -114,7 +114,8 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CompanyLoginView";
-            this.Text = "CompanyLoginView";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Company login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
