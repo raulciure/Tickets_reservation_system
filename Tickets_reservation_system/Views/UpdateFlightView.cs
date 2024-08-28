@@ -29,14 +29,14 @@ namespace Tickets_reservation_system.Views
             InitializeComponent();
 
             this.toUpdateFlight = flight;
-            dataGridView1.DataSource = this.toUpdateFlight;
+            dataGridView1.DataSource = new List<Flight> { this.toUpdateFlight };
             
             LoadData();
         }
 
         private void LoadData()
         {
-            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Days));
+            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Flight.Days));
             companyNameTextBox.Text = logedInCompany.Name;
             countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
 
@@ -51,6 +51,11 @@ namespace Tickets_reservation_system.Views
 
             companyFleet = planeController.GetPlanesByCompany(logedInCompany);
         }
+
+        //private void ShowToUpdateFlightData()
+        //{
+
+        //}
 
         private void planeTailNumberComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

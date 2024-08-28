@@ -32,7 +32,7 @@ namespace Tickets_reservation_system.Views
 
         private void LoadData()
         {
-            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Days));
+            operatingDaysCheckedListBox.DataSource = Enum.GetValues(typeof(Flight.Days));
             companyNameTextBox.Text = logedInCompany.Name;
             countryOfRegTextBox.Text = logedInCompany.CountryOfRegistration;
 

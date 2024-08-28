@@ -32,9 +32,29 @@ namespace Tickets_reservation_system.Views
 
         private void LoadData()
         {
-            dataGridView1.DataSource = controller.GetFlights();
+            BindingSource bindingSource = new BindingSource();
+
+            var flightsList = controller.GetFlights();
+
+            var flightsDataSource = flightsList.Select(x => new
+            {
+                x.DepartureAirport,
+                x.ArrivalAirport,
+                x.DepartureTime,
+                x.ArrivalTime,
+                x.FlightTime,
+                OperatingDays = String.Join(",", x.OperatingDays),  // Convert operating days into comma separated string
+                x.FlightNumber,
+                x.Price,
+                x.PlaneTailNumber,
+                x.CompanyName
+
+            }).ToList();
+
+            dataGridView1.DataSource = flightsDataSource;
         }
 
+        // Add button
         private void button1_Click(object sender, EventArgs e)
         {
             Form f = new AddFlightView(logedInCompany);
@@ -43,6 +63,7 @@ namespace Tickets_reservation_system.Views
             if(status == DialogResult.OK) LoadData();
         }
 
+        // Update button
         private void button2_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null) // if a row is selected
@@ -63,6 +84,7 @@ namespace Tickets_reservation_system.Views
             }
         }
 
+        // Delete button
         private void button3_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null) // if a row is selected

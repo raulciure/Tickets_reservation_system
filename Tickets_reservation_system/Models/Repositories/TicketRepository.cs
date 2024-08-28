@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Tickets_reservation_system.Models.Repositories.Utilitaries;
+using Tickets_reservation_system.Models.Repositories.Utilities;
 
 
 namespace Tickets_reservation_system.Models.Repositories

@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models
 {
-    public enum Days
-    {
-        MONDAY,
-        TUESDAY,
-        WEDNESDAY,
-        THURSDAY,
-        FRIDAY,
-        SATURDAY,
-        SUNDAY
-    }
-
     [Serializable]
     internal class Flight
     {
+        public enum Days
+        {
+            MONDAY,
+            TUESDAY,
+            WEDNESDAY,
+            THURSDAY,
+            FRIDAY,
+            SATURDAY,
+            SUNDAY
+        }
+
         private string departureAirport;
         private string arrivalAirport;
         private DateTime departureTime;

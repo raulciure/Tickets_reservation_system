@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tickets_reservation_system.Models.Repositories.Utilitaries
+namespace Tickets_reservation_system.Models.Repositories.Utilities
 {
     public static class ProjectPath
     {

@@ -119,7 +119,7 @@
     <Compile Include="Models\Repositories\PassangerRepository.cs" />
     <Compile Include="Models\Repositories\PlaneRepository.cs" />
     <Compile Include="Models\Repositories\TicketRepository.cs" />
-    <Compile Include="Models\Repositories\Utilitaries\ProjectPath.cs" />
+    <Compile Include="Models\Repositories\Utilities\ProjectPath.cs" />
     <Compile Include="Testing\CompanyRepositoryTest.cs" />
     <Compile Include="Testing\CompanyLoginRepositoryTest.cs" />
     <Compile Include="Views\WelcomePageView.cs">
