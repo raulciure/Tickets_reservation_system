@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -66,7 +65,7 @@
             this.planeTailNumberComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.planeNameTextBox = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -76,22 +75,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 0;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(36, 128);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(316, 478);
-            this.dataGridView1.TabIndex = 1;
             // 
             // label2
             // 
@@ -219,7 +202,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label16.Location = new System.Drawing.Point(984, 554);
+            this.label16.Location = new System.Drawing.Point(984, 569);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(68, 20);
             this.label16.TabIndex = 94;
@@ -385,7 +368,7 @@
             // 
             // priceTextBox
             // 
-            this.priceTextBox.Location = new System.Drawing.Point(1073, 547);
+            this.priceTextBox.Location = new System.Drawing.Point(1073, 565);
             this.priceTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(200, 26);
@@ -396,7 +379,7 @@
             this.operatingDaysCheckedListBox.FormattingEnabled = true;
             this.operatingDaysCheckedListBox.Location = new System.Drawing.Point(1073, 384);
             this.operatingDaysCheckedListBox.Name = "operatingDaysCheckedListBox";
-            this.operatingDaysCheckedListBox.Size = new System.Drawing.Size(200, 142);
+            this.operatingDaysCheckedListBox.Size = new System.Drawing.Size(200, 165);
             this.operatingDaysCheckedListBox.TabIndex = 108;
             // 
             // label4
@@ -446,6 +429,18 @@
             this.planeNameTextBox.Size = new System.Drawing.Size(200, 26);
             this.planeNameTextBox.TabIndex = 98;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.richTextBox1.DetectUrls = false;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(36, 128);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(316, 478);
+            this.richTextBox1.TabIndex = 110;
+            this.richTextBox1.Text = "";
+            // 
             // UpdateFlightView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -488,13 +483,12 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.richTextBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "UpdateFlightView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Update flight";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,7 +497,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
@@ -540,5 +533,6 @@
         private System.Windows.Forms.ComboBox planeTailNumberComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox planeNameTextBox;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

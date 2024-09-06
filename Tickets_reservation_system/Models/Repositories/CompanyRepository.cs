@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
+using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,19 +50,29 @@ namespace Tickets_reservation_system.Models.Repositories
             SerializeJson(jsonContent, jsonPath);
         }
 
-        public void Update(Company currentObj, Company updateObj)
+        public bool Update(Company currentObj, Company updateObj)
         {
             List<Company> jsonContent = DeserializeJson(jsonPath);
-            var index = jsonContent.IndexOf(updateObj);
-            jsonContent[index] = updateObj;
-            SerializeJson(jsonContent, jsonPath);
+            int index = jsonContent.IndexOf(updateObj);
+            if (index >= 0)
+            {
+                jsonContent[index] = updateObj;
+                SerializeJson(jsonContent, jsonPath);
+                return true;
+            }
+            return false;
         }
 
-        public void Delete(Company obj)
+        public bool Delete(Company obj)
         {
             List<Company> jsonContent = DeserializeJson(jsonPath);
-            jsonContent.Remove(obj);
-            SerializeJson(jsonContent, jsonPath);
+            bool status = jsonContent.Remove(obj);
+            if (status == true)
+            {
+                SerializeJson(jsonContent, jsonPath);
+                return true;
+            }
+            return false;
         }
 
         public Company GetCompany(string name)

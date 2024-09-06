@@ -12,7 +12,7 @@ namespace Tickets_reservation_system.Models.Repositories.Interfaces
         void SerializeJson(List<T> list, string path);
         List<T> DeserializeJson(string path);
         void Add(T obj);
-        void Update(T currentObj, T updateObj);
-        void Delete(T obj);
+        bool Update(T currentObj, T updateObj);
+        bool Delete(T obj);
     }
 }

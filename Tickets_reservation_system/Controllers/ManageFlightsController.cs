@@ -20,14 +20,14 @@ namespace Tickets_reservation_system.Controllers
             flightRepository.Add(flight);
         }
 
-        public void Update(Flight currentFlight, Flight updateFlight)
+        public bool Update(Flight currentFlight, Flight updateFlight)
         {
-            flightRepository.Update(currentFlight, updateFlight);
+            return flightRepository.Update(currentFlight, updateFlight);
         }
 
-        public void Remove(Flight flight)
+        public bool Remove(Flight flight)
         {
-            flightRepository.Delete(flight);
+            return flightRepository.Delete(flight);
         }
 
         public List<Flight> GetFlights()

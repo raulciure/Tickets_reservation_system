@@ -22,19 +22,20 @@ namespace Tickets_reservation_system.Views
         internal ManageFlightsView(Company company, CompanyUser user)
         {
             InitializeComponent();
-            LoadData();
 
             logedInCompany = company;
             loggedInUser = user;
             companyNameLabel.Text = logedInCompany.Name;
             userNameLabel.Text = "User: " + loggedInUser.Username;
+
+            LoadData();
         }
 
         private void LoadData()
         {
             BindingSource bindingSource = new BindingSource();
 
-            var flightsList = controller.GetFlights();
+            var flightsList = controller.GetFlights(logedInCompany.Name);
 
             var flightsDataSource = flightsList.Select(x => new
             {
@@ -68,7 +69,8 @@ namespace Tickets_reservation_system.Views
         {
             if (dataGridView1.CurrentRow != null) // if a row is selected
             {
-                Flight selectedFlight = (Flight)dataGridView1.CurrentRow.DataBoundItem;
+                // Get flight number cell value from dataGridView selected row
+                Flight selectedFlight = controller.GetFlight(dataGridView1.CurrentRow.Cells[6].Value.ToString());
 
                 if (selectedFlight != null)
                 {

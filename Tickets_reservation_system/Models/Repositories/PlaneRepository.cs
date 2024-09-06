@@ -46,19 +46,29 @@ namespace Tickets_reservation_system.Models.Repositories
             SerializeJson(jsonContent, jsonPath);
         }
 
-        public void Update(Plane currentObj, Plane updateObj)
+        public bool Update(Plane currentObj, Plane updateObj)
         {
             List<Plane> jsonContent = DeserializeJson(jsonPath);
-            var index = jsonContent.IndexOf(updateObj);
-            jsonContent[index] = updateObj;
-            SerializeJson(jsonContent, jsonPath);
+            int index = jsonContent.IndexOf(updateObj);
+            if (index >= 0)
+            {
+                jsonContent[index] = updateObj;
+                SerializeJson(jsonContent, jsonPath);
+                return true;
+            }
+            return false;
         }
 
-        public void Delete(Plane obj)
+        public bool Delete(Plane obj)
         {
             List<Plane> jsonContent = DeserializeJson(jsonPath);
-            jsonContent.Remove(obj);
-            SerializeJson(jsonContent, jsonPath);
+            bool status = jsonContent.Remove(obj);
+            if(status == true)
+            {
+                SerializeJson(jsonContent, jsonPath);
+                return true;
+            }
+            return false;
         }
 
         public List<Plane> GetAll()
