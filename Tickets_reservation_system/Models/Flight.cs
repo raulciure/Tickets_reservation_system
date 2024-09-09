@@ -57,5 +57,27 @@ namespace Tickets_reservation_system.Models
         public int Price { get => this.price; set => this.price = value; }
         public string PlaneTailNumber { get => this.planeTailNumber; set => this.planeTailNumber = value; }
         public string CompanyName { get => this.companyName; set => this.companyName = value; }
+
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Flight)) return false;
+
+            Flight flight = obj as Flight;
+
+            if (flight.DepartureAirport == this.DepartureAirport && flight.ArrivalAirport == this.ArrivalAirport 
+                && flight.DepartureTime == this.DepartureTime && flight.ArrivalTime == this.ArrivalTime && flight.FlightTime == this.FlightTime
+                && flight.OperatingDays.SequenceEqual(this.OperatingDays) && flight.FlightNumber == this.FlightNumber && flight.Price == this.Price
+                && flight.PlaneTailNumber == this.PlaneTailNumber && flight.CompanyName == this.CompanyName)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.FlightNumber.GetHashCode();
+        }
     }
 }

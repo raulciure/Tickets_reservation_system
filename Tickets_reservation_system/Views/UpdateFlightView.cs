@@ -56,6 +56,7 @@ namespace Tickets_reservation_system.Views
             foreach (int index in toUpdateFlight.OperatingDays.Select(v => (int)v))
             {
                 operatingDaysCheckedListBox.SetItemChecked(index, true);
+                // operatingDaysCheckedListBox.SetItemCheckState(index, CheckState.Checked);
             }
 
             companyNameTextBox.Text = logedInCompany.Name;
@@ -183,7 +184,7 @@ namespace Tickets_reservation_system.Views
                 DepartureTime = departureTimeDateTimePicker.Value,
                 ArrivalTime = arrivalTimeDateTimePicker.Value,
                 FlightTime = manageFlightsController.GetFlightTime(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value),
-                OperatingDays = manageFlightsController.GetOperatingDays(operatingDaysCheckedListBox.SelectedItems),
+                OperatingDays = manageFlightsController.GetOperatingDays(operatingDaysCheckedListBox.CheckedItems),
                 Price = Int32.Parse(priceTextBox.Text),
                 CompanyName = newCompany.Name,
                 PlaneTailNumber = newPlane.TailNumber

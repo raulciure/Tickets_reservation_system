@@ -134,7 +134,7 @@ namespace Tickets_reservation_system.Views
                 DepartureTime = departureTimeDateTimePicker.Value,
                 ArrivalTime = arrivalTimeDateTimePicker.Value,
                 FlightTime = manageFlightController.GetFlightTime(departureTimeDateTimePicker.Value, arrivalTimeDateTimePicker.Value),
-                OperatingDays = manageFlightController.GetOperatingDays(operatingDaysCheckedListBox.SelectedItems),
+                OperatingDays = manageFlightController.GetOperatingDays(operatingDaysCheckedListBox.CheckedItems),
                 Price = Int32.Parse(priceTextBox.Text),
                 CompanyName = company.Name,
                 PlaneTailNumber = plane.TailNumber
