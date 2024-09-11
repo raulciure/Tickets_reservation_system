@@ -33,8 +33,6 @@ namespace Tickets_reservation_system.Views
 
         private void LoadData()
         {
-            BindingSource bindingSource = new BindingSource();
-
             var flightsList = controller.GetFlights(logedInCompany.Name);
 
             var flightsDataSource = flightsList.Select(x => new

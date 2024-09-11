@@ -14,25 +14,43 @@ namespace Tickets_reservation_system.Views
 {
     public partial class ReserveFlightView : Form
     {
-        private Flight flight;
+        private readonly Flight departureFlight;
+        private readonly Flight returnFlight;
+        private readonly bool returnFlag;
 
 
-        internal ReserveFlightView(Flight flight)
+        internal ReserveFlightView(Flight departureFlight, Flight returnFlight, bool returnFlag)
         {
             InitializeComponent();
-            this.flight = flight;
+
+            this.departureFlight = departureFlight;
+            this.returnFlight = returnFlight;
+            this.returnFlag = returnFlag;
+
+            LoadData();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void LoadData()
+        {
+            List<Flight> flights = new List<Flight>();
+            flights.Add(departureFlight);
+            if(returnFlag == true)
+                flights.Add(returnFlight);
+
+            dataGridView1.DataSource = flights;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
 
         }
 
+        // Book button
         private void button1_Click(object sender, EventArgs e)
         {
             if(!Regex.Match(textBox1.Text, "^[A-Z][a-zA-Z]*$").Success)
@@ -73,19 +91,10 @@ namespace Tickets_reservation_system.Views
             }
         }
 
+        // Cancel button
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-		private void ReserveFlightView_Load(object sender, EventArgs e)
-		{
-
-		}
-	}
+    }
 }

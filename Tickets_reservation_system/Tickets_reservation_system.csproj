@@ -105,6 +105,8 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\ManageFlightsController.cs" />
     <Compile Include="Controllers\PlaneController.cs" />
+    <Compile Include="Controllers\SearchFlightController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Models\CompanyUser.cs" />
     <Compile Include="Models\Repositories\CompanyLoginRepository.cs" />
     <Compile Include="Models\Repositories\CompanyRepository.cs" />

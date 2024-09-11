@@ -83,5 +83,11 @@ namespace Tickets_reservation_system.Models.Repositories
             jsonContent.RemoveAll(x => x.PassangerId.Equals(id));
             SerializeJson(jsonContent, jsonPath);
         }
+
+        public List<Ticket> GetAll()
+        {
+            List<Ticket> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent;
+        }
     }
 }
