@@ -9,6 +9,6 @@ namespace Tickets_reservation_system.Models.Repositories.Interfaces
     internal interface ITicketRepository : IRepository<Ticket>
     {
         Ticket GetTicket(int ticketId);
-        void DeleteTicketByPassangerId(string idSerialNumber);
+        void DeleteTicketByPassengerId(string idSerialNumber);
     }
 }

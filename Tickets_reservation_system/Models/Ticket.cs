@@ -10,14 +10,14 @@ namespace Tickets_reservation_system.Models
     internal class Ticket
     {
         private string flightNumber;
-        private string passangerId;
+        private Passanger passenger;
         private int ticketId;
         private string seatNr;
 
-        public Ticket(string flightNumber, string passangerId, int ticketId, string seatNr)
+        public Ticket(string flightNumber, Passanger passenger, int ticketId, string seatNr)
         {
             this.flightNumber = flightNumber;
-            this.passangerId = passangerId;
+            this.passenger = passenger;
             this.ticketId = ticketId;
             this.seatNr = seatNr;
         }
@@ -25,7 +25,7 @@ namespace Tickets_reservation_system.Models
         public Ticket() { }
 
         public string FlightNumber { get => this.flightNumber; set => this.flightNumber = value; }
-        public string PassangerId { get => this.passangerId; set => this.passangerId = value; }
+        public Passanger Passenger { get => this.passenger; set => this.passenger = value; }
         public int TicketId { get => this.ticketId; set => this.ticketId = value; }
         public string SeatNr { get => this.seatNr; set => this.seatNr = value; }
     }

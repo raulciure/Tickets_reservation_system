@@ -12,6 +12,16 @@ namespace Tickets_reservation_system.Controllers
     {
         private readonly TicketRepository ticketRepository = new TicketRepository();
 
+        public void Add(Ticket ticket)
+        {
+            ticketRepository.Add(ticket);
+        }
+
+        public bool Remove(Ticket ticket)
+        {
+            return ticketRepository.Delete(ticket);
+        }
+
         public int GetTicketCountByFlight(string flightNumber)
         {
             List<Ticket> allTickets = ticketRepository.GetAll();

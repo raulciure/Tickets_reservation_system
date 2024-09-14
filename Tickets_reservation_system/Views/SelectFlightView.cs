@@ -16,14 +16,16 @@ namespace Tickets_reservation_system.Views
         private readonly List<Flight> departureFlights;
         private readonly List<Flight> returnFlights;
         private readonly bool returnFlag;
+        private readonly int seatsNr;
 
-        internal SelectFlightView(List<Flight> departureResultFlights, List<Flight> returnResultFlights, bool returnFlag)
+        internal SelectFlightView(List<Flight> departureResultFlights, List<Flight> returnResultFlights, bool returnFlag, int seatsNr)
         {
             InitializeComponent();
 
-            departureFlights = departureResultFlights;
-            returnFlights = returnResultFlights;
+            this.departureFlights = departureResultFlights;
+            this.returnFlights = returnResultFlights;
             this.returnFlag = returnFlag;
+            this.seatsNr = seatsNr;
 
             LoadData();
         }
@@ -46,8 +48,11 @@ namespace Tickets_reservation_system.Views
 
             if (selectedDepartureFlight != null)
             {
-                Form f = new ReserveFlightView(selectedDepartureFlight, selectedReturnFlight, this.returnFlag);
-                f.ShowDialog();
+                for (int index = 1; index <= this.seatsNr; index++)
+                {
+                    Form f = new ReserveFlightView(selectedDepartureFlight, selectedReturnFlight, this.returnFlag, index);
+                    f.ShowDialog();
+                }
             }
             else
                 MessageBox.Show("No item selected!", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Warning);

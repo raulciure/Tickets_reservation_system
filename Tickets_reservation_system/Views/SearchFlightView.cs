@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tickets_reservation_system.Controllers;
 using Tickets_reservation_system.Models;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Tickets_reservation_system.Views
 {
@@ -27,7 +20,7 @@ namespace Tickets_reservation_system.Views
         private void LoadData()
         {
             adultsComboBox.Items.AddRange(new object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
-            kidsComboBox.Items.AddRange(new object[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+            kidsComboBox.Items.AddRange(new object[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -90,7 +83,7 @@ namespace Tickets_reservation_system.Views
 
             if (departureResult.Count > 0)
             {
-                Form f = new SelectFlightView(departureResult, returnResult, returnCheckBox.Checked);
+                Form f = new SelectFlightView(departureResult, returnResult, returnCheckBox.Checked, seatsNr); // seatsNr = number of seats that are wanted to be reserved
                 f.ShowDialog();
             }
             else

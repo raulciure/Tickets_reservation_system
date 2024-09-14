@@ -77,10 +77,10 @@ namespace Tickets_reservation_system.Models.Repositories
             return jsonContent.Find(x =>  x.TicketId.Equals(ticketId));
         }
 
-        public void DeleteTicketByPassangerId(string id)
+        public void DeleteTicketByPassengerId(string id)
         {
             List<Ticket> jsonContent = DeserializeJson(jsonPath);
-            jsonContent.RemoveAll(x => x.PassangerId.Equals(id));
+            jsonContent.RemoveAll(x => x.Passenger.Id.Equals(id));
             SerializeJson(jsonContent, jsonPath);
         }
 
