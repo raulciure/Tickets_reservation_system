@@ -49,7 +49,7 @@ namespace Tickets_reservation_system.Views
             {
                 FlightNumber = departureFlight.FlightNumber,
                 Passenger = passenger,
-                TicketId = GetHashCode(),
+                TicketId = Guid.NewGuid().ToString("N"),
                 SeatNr = null // TEMPORARY, requires implementation of seat allocation function
             };
             ticketController.Add(newDepartureTicket);
@@ -60,7 +60,7 @@ namespace Tickets_reservation_system.Views
                 {
                     FlightNumber = returnFlight.FlightNumber,
                     Passenger = passenger,
-                    TicketId = GetHashCode(),
+                    TicketId = Guid.NewGuid().ToString("N"),
                     SeatNr = null // TEMPORARY, requires implementation of seat allocation function
                 };
                 ticketController.Add(newReturnTicket);

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models.Repositories.Interfaces
 {
-    internal interface IPassangerRepository : IRepository<Passanger>
+    internal interface IPassengerRepository : IRepository<Passanger>
     {
-        Passanger GetPassanger(string id);
+        Passanger GetPassenger(string id);
     }
 }

@@ -36,7 +36,7 @@ namespace Tickets_reservation_system.Views
         // Confirm button
         private void button2_Click(object sender, EventArgs e)
         {
-            if (!Regex.Match(textBox1.Text, "^[0-9]*$").Success)
+            if (!Regex.Match(textBox1.Text, "^[0-9]*$").Success && textBox1.Text.Length != 16)
             {
                 MessageBox.Show("ADD A VALID CARD NUMBER");
                 return;

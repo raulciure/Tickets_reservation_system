@@ -59,6 +59,7 @@
             this.departureDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.departureDataGridView.Location = new System.Drawing.Point(50, 104);
             this.departureDataGridView.Name = "departureDataGridView";
+            this.departureDataGridView.ReadOnly = true;
             this.departureDataGridView.RowHeadersWidth = 51;
             this.departureDataGridView.RowTemplate.Height = 24;
             this.departureDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -99,6 +100,7 @@
             this.returnDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.returnDataGridView.Location = new System.Drawing.Point(50, 374);
             this.returnDataGridView.Name = "returnDataGridView";
+            this.returnDataGridView.ReadOnly = true;
             this.returnDataGridView.RowHeadersWidth = 51;
             this.returnDataGridView.RowTemplate.Height = 24;
             this.returnDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

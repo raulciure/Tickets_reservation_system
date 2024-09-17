@@ -12,9 +12,9 @@ using Tickets_reservation_system.Models.Repositories.Utilities;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal class PassangerRepository : Interfaces.IPassangerRepository
+    internal class PassengerRepository : Interfaces.IPassengerRepository
     {
-        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/passangers_data.json";
+        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/passengers_data.json";
 
         public void SerializeJson(List<Passanger> list, string path)
         {
@@ -71,7 +71,7 @@ namespace Tickets_reservation_system.Models.Repositories
             return false;
         }
 
-        public Passanger GetPassanger(string id)
+        public Passanger GetPassenger(string id)
         {
             List<Passanger> jsonContent = DeserializeJson(jsonPath);
             return jsonContent.Find(x => x.Id.Equals(id));
