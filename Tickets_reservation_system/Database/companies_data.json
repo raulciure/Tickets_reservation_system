@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Lufthansa",
+        "fleet": 
+        [
+            "N762QT",
+            "OP246D"
+        ],
+        "countryOfRegistration": "Germany"
+    },
+    {
+        "name": "KLM",
+        "fleet":
+        [ 
+            "B34YU2"
+        ],
+        "countryOfRegistration": "Netherlands"
+    }
+]

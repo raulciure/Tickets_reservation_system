@@ -17,12 +17,14 @@ namespace Tickets_reservation_system.Views
             InitializeComponent();
         }
 
+        // Booking
         private void button1_Click(object sender, EventArgs e)
         {
             Form f = new SearchFlightView();
             f.ShowDialog();
         }
 
+        // Company portal
         private void button2_Click(object sender, EventArgs e)
         {
             Form f = new CompanyLoginView();

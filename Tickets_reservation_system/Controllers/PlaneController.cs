@@ -21,5 +21,10 @@ namespace Tickets_reservation_system.Controllers
         {
             return planeRepository.GetPlane(tailNumber);
         }
+
+        public int GetPlaneSeatNumbers(string tailNumber)
+        {
+            return planeRepository.GetPlane(tailNumber).SeatsNr;
+        }
     }
 }

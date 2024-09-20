@@ -20,19 +20,24 @@ namespace Tickets_reservation_system.Controllers
             flightRepository.Add(flight);
         }
 
-        public void Update(Flight currentFlight, Flight updateFlight)
+        public bool Update(Flight currentFlight, Flight updateFlight)
         {
-            flightRepository.Update(currentFlight, updateFlight);
+            return flightRepository.Update(currentFlight, updateFlight);
         }
 
-        public void Remove(Flight flight)
+        public bool Remove(Flight flight)
         {
-            flightRepository.Delete(flight);
+            return flightRepository.Delete(flight);
         }
 
         public List<Flight> GetFlights()
         {
             return flightRepository.GetAll();
+        }
+
+        public List<Flight> GetFlights(string companyName)
+        {
+            return flightRepository.GetFlightsOfCompany(companyName);
         }
 
         public Flight GetFlight(string flightNumber)
@@ -45,14 +50,13 @@ namespace Tickets_reservation_system.Controllers
             return (arrivalTime - departureTime);
         }
 
-        public List<Flight.Days> GetOperatingDays(ListBox.SelectedObjectCollection selectedItems)
+        public List<Flight.Days> GetOperatingDays(CheckedListBox.CheckedItemCollection checkedItems)
         {
             List<Flight.Days> operatingDays = new List<Flight.Days>();
 
-            foreach(object item in selectedItems)
+            foreach(object item in checkedItems)
             {
-                Flight.Days parsedDay;
-                if (Enum.TryParse(item.ToString(), out parsedDay))
+                if (Enum.TryParse(item.ToString(), out Flight.Days parsedDay))
                 {
                     operatingDays.Add(parsedDay);
                 }

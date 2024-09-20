@@ -6,26 +6,27 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models
 {
+    [Serializable]
     internal class Ticket
     {
-        private Flight flight;
-        private Passanger passanger;
-        private int ticketId;
+        private string flightNumber;
+        private Passanger passenger;
+        private string ticketId;
         private string seatNr;
 
-        public Ticket(Flight flight, Passanger passanger, int ticketId, string seatNr)
+        public Ticket(string flightNumber, Passanger passenger, string ticketId, string seatNr)
         {
-            this.flight = flight;
-            this.passanger = passanger;
+            this.flightNumber = flightNumber;
+            this.passenger = passenger;
             this.ticketId = ticketId;
             this.seatNr = seatNr;
         }
 
         public Ticket() { }
 
-        public Flight Flight { get => this.flight; set => this.flight = value; }
-        public Passanger Passanger { get => this.passanger; set => this.passanger = value; }
-        public int TicketId { get => this.ticketId; set => this.ticketId = value; }
+        public string FlightNumber { get => this.flightNumber; set => this.flightNumber = value; }
+        public Passanger Passenger { get => this.passenger; set => this.passenger = value; }
+        public string TicketId { get => this.ticketId; set => this.ticketId = value; }
         public string SeatNr { get => this.seatNr; set => this.seatNr = value; }
     }
 }

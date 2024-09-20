@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Tickets_reservation_system.Models
 {
+    [Serializable]
     internal class Flight
     {
         public enum Days
@@ -13,7 +14,7 @@ namespace Tickets_reservation_system.Models
             MONDAY,
             TUESDAY,
             WEDNESDAY,
-            THURSDAT,
+            THURSDAY,
             FRIDAY,
             SATURDAY,
             SUNDAY
@@ -27,11 +28,11 @@ namespace Tickets_reservation_system.Models
         private List<Days> operatingDays;
         private string flightNumber;
         private int price;
-        private Plane plane;
-        private Company company;
+        private string planeTailNumber;
+        private string companyName;
 
         public Flight(string departureAirport, string arrivalAirport, DateTime departureTime, DateTime arrivalTime, 
-            TimeSpan flightTime, string flightNumber, int price, Plane plane, Company company)
+            TimeSpan flightTime, string flightNumber, int price, string planeTailNumber, string companyName)
         {
             this.departureAirport = departureAirport;
             this.arrivalAirport = arrivalAirport;
@@ -40,8 +41,8 @@ namespace Tickets_reservation_system.Models
             this.flightTime = flightTime;
             this.flightNumber = flightNumber;
             this.price = price;
-            this.plane = plane;
-            this.company = company;
+            this.planeTailNumber = planeTailNumber;
+            this.companyName = companyName;
         }
 
         public Flight() { }
@@ -54,7 +55,29 @@ namespace Tickets_reservation_system.Models
         public List<Days> OperatingDays { get => this.operatingDays; set => this.operatingDays = value; }
         public string FlightNumber { get => this.flightNumber; set => this.flightNumber = value; }
         public int Price { get => this.price; set => this.price = value; }
-        public Plane Plane { get => this.plane; set => this.plane = value; }
-        public Company Company { get => this.company; set => this.company = value; }
+        public string PlaneTailNumber { get => this.planeTailNumber; set => this.planeTailNumber = value; }
+        public string CompanyName { get => this.companyName; set => this.companyName = value; }
+
+
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Flight)) return false;
+
+            Flight flight = obj as Flight;
+
+            if (flight.DepartureAirport == this.DepartureAirport && flight.ArrivalAirport == this.ArrivalAirport 
+                && flight.DepartureTime == this.DepartureTime && flight.ArrivalTime == this.ArrivalTime && flight.FlightTime == this.FlightTime
+                && flight.OperatingDays.SequenceEqual(this.OperatingDays) && flight.FlightNumber == this.FlightNumber && flight.Price == this.Price
+                && flight.PlaneTailNumber == this.PlaneTailNumber && flight.CompanyName == this.CompanyName)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.FlightNumber.GetHashCode();
+        }
     }
 }

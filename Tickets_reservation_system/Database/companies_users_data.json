@@ -1,0 +1,12 @@
+[
+  {
+    "companyName": "Lufthansa",
+    "username": "user1",
+    "password": "abcd"
+  },
+  {
+    "companyName": "KLM",
+    "username": "user2",
+    "password": "xyz"
+  }
+]

@@ -1,11 +1,7 @@
-﻿using Microsoft.Data.Sqlite;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.ComponentModel;
 using System.IO;
-using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,23 +12,23 @@ using Tickets_reservation_system.Models.Repositories.Utilities;
 
 namespace Tickets_reservation_system.Models.Repositories
 {
-    internal class CompanyRepository : Interfaces.ICompanyRepository
+    internal class CompanyLoginRepository : Interfaces.ICompanyLoginRepository
     {
-        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/companies_data.json";
+        private string jsonPath = ProjectPath.GetProjectPath() + "/Database/companies_users_data.json";
 
-        public void SerializeJson(List<Company> list, string path)
+        public void SerializeJson(List<CompanyUser> list, string path)
         {
             string jsonText = JsonConvert.SerializeObject(list);
             File.WriteAllText(path, jsonText);
         }
 
-        public List<Company> DeserializeJson(string path)
+        public List<CompanyUser> DeserializeJson(string path)
         {
             string jsonText = File.ReadAllText(path);
 
             try
             {
-                List<Company> list = JsonConvert.DeserializeObject<List<Company>>(jsonText);
+                List<CompanyUser> list = JsonConvert.DeserializeObject<List<CompanyUser>>(jsonText);
                 return list;
             }
             catch
@@ -43,16 +39,16 @@ namespace Tickets_reservation_system.Models.Repositories
             return null;
         }
 
-        public void Add(Company obj)
+        public void Add(CompanyUser obj)
         {
-            List<Company> jsonContent = DeserializeJson(jsonPath);
+            List<CompanyUser> jsonContent = DeserializeJson(jsonPath);
             jsonContent.Add(obj);
             SerializeJson(jsonContent, jsonPath);
         }
 
-        public bool Update(Company currentObj, Company updateObj)
+        public bool Update(CompanyUser currentObj, CompanyUser updateObj)
         {
-            List<Company> jsonContent = DeserializeJson(jsonPath);
+            List<CompanyUser> jsonContent = DeserializeJson(jsonPath);
             int index = jsonContent.IndexOf(updateObj);
             if (index >= 0)
             {
@@ -63,9 +59,9 @@ namespace Tickets_reservation_system.Models.Repositories
             return false;
         }
 
-        public bool Delete(Company obj)
+        public bool Delete(CompanyUser obj)
         {
-            List<Company> jsonContent = DeserializeJson(jsonPath);
+            List<CompanyUser> jsonContent = DeserializeJson(jsonPath);
             bool status = jsonContent.Remove(obj);
             if (status == true)
             {
@@ -75,15 +71,15 @@ namespace Tickets_reservation_system.Models.Repositories
             return false;
         }
 
-        public Company GetCompany(string name)
+        public CompanyUser GetCompanyUser(string username)
         {
-            List<Company> jsonContent = DeserializeJson(jsonPath);
-            return jsonContent.Find(x => x.Name.Equals(name));
+            List<CompanyUser> jsonContent = DeserializeJson(jsonPath);
+            return jsonContent.Find(x => x.Username.Equals(username));
         }
 
-        public List<Company> GetAll()
+        public List<CompanyUser> GetAll()
         {
-            List<Company> jsonContent = DeserializeJson(jsonPath);
+            List<CompanyUser> jsonContent = DeserializeJson(jsonPath);
             return jsonContent;
         }
     }

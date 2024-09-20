@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tickets_reservation_system.Models.Repositories
+namespace Tickets_reservation_system.Models.Repositories.Interfaces
 {
     internal interface ITicketRepository : IRepository<Ticket>
     {
         Ticket GetTicket(int ticketId);
-        void DeleteTicketByPassangerIdSerialNumber(string idSerialNumber);
+        void DeleteTicketByPassengerId(string idSerialNumber);
     }
 }
