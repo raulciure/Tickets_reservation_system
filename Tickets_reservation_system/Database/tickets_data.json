@@ -4,8 +4,8 @@
         "Passenger": {
             "FirstName": "Raul",
             "LastName": "Ciure",
-            "Email": "raulciure@yahoo.com",
-            "PhoneNumber": "0770710664",
+            "Email": "abc@yahoo.com",
+            "PhoneNumber": "123456789",
             "Age": 22,
             "Id": "123456789"
         },
@@ -17,8 +17,8 @@
         "Passenger": {
             "FirstName": "Raul",
             "LastName": "Ciure",
-            "Email": "raulciure@yahoo.com",
-            "PhoneNumber": "0770710664",
+            "Email": "abc@yahoo.com",
+            "PhoneNumber": "123456789",
             "Age": 22,
             "Id": "123456789"
         },
