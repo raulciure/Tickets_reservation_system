@@ -72,22 +72,29 @@ namespace Tickets_reservation_system.Views
             DateTime departureDate = departureDateTimePicker.Value.Date;
             int seatsNr = Int32.Parse(adultsComboBox.SelectedItem.ToString()) + Int32.Parse(kidsComboBox.SelectedItem.ToString());
 
-            List<Flight> departureResult = searchFlightController.GetFlights(departureAirport, arrivalAirport, departureDate, seatsNr);
-            List<Flight> returnResult = null;
-
-            if (returnCheckBox.Checked == true)
+            try
             {
-                DateTime returnDate = returnDateTimePicker.Value.Date;
-                returnResult = searchFlightController.GetFlights(arrivalAirport, departureAirport, returnDate, seatsNr);
-            }
+                List<Flight> departureResult = searchFlightController.GetFlights(departureAirport, arrivalAirport, departureDate, seatsNr);
+                List<Flight> returnResult = null;
 
-            if (departureResult.Count > 0)
-            {
-                Form f = new SelectFlightView(departureResult, returnResult, returnCheckBox.Checked, seatsNr); // seatsNr = number of seats that are wanted to be reserved
-                f.ShowDialog();
+                if (returnCheckBox.Checked == true)
+                {
+                    DateTime returnDate = returnDateTimePicker.Value.Date;
+                    returnResult = searchFlightController.GetFlights(arrivalAirport, departureAirport, returnDate, seatsNr);
+                }
+
+                if (departureResult.Count > 0)
+                {
+                    Form f = new SelectFlightView(departureResult, returnResult, returnCheckBox.Checked, seatsNr); // seatsNr = number of seats that are wanted to be reserved
+                    f.ShowDialog();
+                }
+                else
+                    MessageBox.Show("No available flights with the given parameters!", "Search result", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else
-                MessageBox.Show("No available flights with the given parameters!", "Search result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            catch (NullReferenceException)
+            {
+                MessageBox.Show("No flights with the selected flight number found!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

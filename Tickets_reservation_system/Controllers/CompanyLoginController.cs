@@ -12,12 +12,6 @@ namespace Tickets_reservation_system.Controllers
     {
         private CompanyLoginRepository companyLoginRepository = new CompanyLoginRepository();
 
-        //List<CompanyUser> companyUsers = new List<CompanyUser>
-        //{
-        //    new CompanyUser { User = "user1", Password = "abcd"},
-        //    new CompanyUser { User = "user2", Password = "efgh"}
-        //};
-
         public Tuple<Company, CompanyUser> LoginValidation(string username, string password)
         {
             CompanyUser companyUser = companyLoginRepository.GetAll().Find(x => x.Username.Equals(username) && x.Password.Equals(password));

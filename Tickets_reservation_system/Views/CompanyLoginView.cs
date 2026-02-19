@@ -26,16 +26,25 @@ namespace Tickets_reservation_system.Views
         {
             Tuple<Company, CompanyUser> combinedTuple = controller.LoginValidation(textBox1.Text, textBox2.Text);
 
-            Models.Company company = combinedTuple.Item1;
-            Models.CompanyUser user = combinedTuple.Item2;
-
-            if (company != null)
+            try
             {
-                Form f = new ManageFlightsView(company, user);
-                f.ShowDialog();
+                Company company = combinedTuple.Item1;
+                CompanyUser user = combinedTuple.Item2;
+
+                if (company != null)
+                {
+                    Form f = new ManageFlightsView(company, user);
+                    f.ShowDialog();
+                }
+                else
+                    MessageBox.Show("Utilizator/Parola incorecte!", "Eroare!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else
-                MessageBox.Show("Utilizator/Parola incorecte!");
+            catch(NullReferenceException)
+            {
+                MessageBox.Show("Utilizator inexistent!", "Eroare!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            
         }
     }
 }

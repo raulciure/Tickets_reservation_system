@@ -22,33 +22,12 @@ namespace Tickets_reservation_system.Testing
                 Name = "TestName",
                 CountryOfRegistration = "TestCOR",
                 Fleet = new List<string>() { "N7862S", "N2113R" }
-
-                /*{
-                    new Plane()
-                    {
-                        CompanyName = "TestName",
-                        Name = "Boieng 737-800NG",
-                        TailNumber = "N7862S",
-                        SeatsNr = 136,
-                        SeatingConfiguration = new Plane.Seating { FirstSeats = 10, BussinessSeats = 10, EconomySeats = 116 },
-                        Range = 6000
-                    },
-                    new Plane()
-                    {
-                        CompanyName = "TestName",
-                        Name = "Airbus a320",
-                        TailNumber = "N2113R",
-                        SeatsNr = 128,
-                        SeatingConfiguration = new Plane.Seating { FirstSeats = 0, BussinessSeats = 0, EconomySeats = 128 },
-                        Range = 6200
-                    }
-                }*/
             };
 
             companyRepository.Add(insertCompany);
-            //Company readCompany = companyRepository.GetCompany("TestName");
+            Company readCompany = companyRepository.GetCompany("TestName");
 
-            Assert.Equal(insertCompany, insertCompany);
+            Assert.Equal(insertCompany, readCompany);
         }
     }
 }

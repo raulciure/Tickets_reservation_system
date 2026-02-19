@@ -56,7 +56,6 @@ namespace Tickets_reservation_system.Views
             foreach (int index in toUpdateFlight.OperatingDays.Select(v => (int)v))
             {
                 operatingDaysCheckedListBox.SetItemChecked(index, true);
-                // operatingDaysCheckedListBox.SetItemCheckState(index, CheckState.Checked);
             }
 
             companyNameTextBox.Text = logedInCompany.Name;
@@ -89,41 +88,6 @@ namespace Tickets_reservation_system.Views
         // Save button
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (!Regex.Match(companyNameTextBox.Text, "^[a-zA-Z]*$").Success)
-            //{
-            //    MessageBox.Show("ADD A VALID COMPANY NAME");
-            //    return;
-            //}
-            //if (!Regex.Match(seatsNrTextBox.Text, "^[0-9]*$").Success)
-            //{
-            //    MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
-            //    companyNameTextBox.Focus();
-            //    return;
-            //}
-            //if (!Regex.Match(economySeatsNrTextBox.Text, "^[0-9]*$").Success)
-            //{
-            //    MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
-            //    companyNameTextBox.Focus();
-            //    return;
-            //}
-            //if (!Regex.Match(bussinessSeatsNrTextBox.Text, "^[0-9]*$").Success)
-            //{
-            //    MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
-            //    companyNameTextBox.Focus();
-            //    return;
-            //}
-            //if (!Regex.Match(firstSeatsNrTextBox.Text, "^[0-9]*$").Success)
-            //{
-            //    MessageBox.Show("ADD A VALID SEATS/CLASS NUMBER");
-            //    companyNameTextBox.Focus();
-            //    return;
-            //}
-            //if (!Regex.Match(rangeTextBox.Text, "^[1-9]*$").Success)
-            //{
-            //    MessageBox.Show("ADD A VALID RANGE");
-            //    companyNameTextBox.Focus();
-            //    return;
-            //}
             if (!Regex.Match(departureTextBox.Text, "^[a-zA-Z]*$").Success)
             {
                 MessageBox.Show("ADD A VALID AIRPORT NAME");
@@ -152,26 +116,6 @@ namespace Tickets_reservation_system.Views
                 MessageBox.Show("COMPLETE EMPTY FIELDS");
                 return;
             }
-
-            //Company newCompany = new Company
-            //{
-            //    Name = companyNameTextBox.Text,
-            //    CountryOfRegistration = countryOfRegTextBox.Text
-            //};
-
-            //Plane newPlane = new Plane
-            //{
-            //    CompanyName = newCompany.Name,
-            //    TailNumber = planeTailNumber.Text,
-            //    SeatsNr = Int32.Parse(seatsNrTextBox.Text),
-            //    SeatingConfiguration = new Plane.Seating
-            //    {
-            //        EconomySeats = Int32.Parse(economySeatsNrTextBox.Text),
-            //        BussinessSeats = Int32.Parse(bussinessSeatsNrTextBox.Text),
-            //        FirstSeats = Int32.Parse(firstSeatsNrTextBox.Text)
-            //    },
-            //    Range = Int32.Parse(rangeTextBox.Text)
-            //};
 
             Company newCompany = logedInCompany;
             Plane newPlane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));

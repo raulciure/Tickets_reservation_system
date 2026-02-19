@@ -103,26 +103,6 @@ namespace Tickets_reservation_system.Views
                 return;
             }
 
-            //Company company = new Company
-            //{
-            //    Name = companyNameTextBox.Text,
-            //    CountryOfRegistration = countryOfRegTextBox.Text
-            //};
-
-            //Plane plane = new Plane
-            //{
-            //    CompanyName = company.Name,
-            //    TailNumber = planeTailNumberTextBox.Text,
-            //    SeatsNr = Int32.Parse(seatsNrTextBox.Text),
-            //    SeatingConfiguration = new Plane.Seating
-            //    {
-            //        EconomySeats = Int32.Parse(economySeatsNr.Text),
-            //        BussinessSeats = Int32.Parse (bussinessSeatsNr.Text),
-            //        FirstSeats = Int32.Parse(firstSeatsNr.Text),
-            //    },
-            //    Range = Int32.Parse(rangeTextBox.Text)
-            //};
-
             Company company = logedInCompany;
             Plane plane = companyFleet.Find(x => x.TailNumber.Equals(planeTailNumberComboBox.SelectedItem));
 

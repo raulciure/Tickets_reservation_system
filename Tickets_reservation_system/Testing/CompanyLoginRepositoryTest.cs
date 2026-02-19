@@ -18,11 +18,6 @@ namespace Tickets_reservation_system.Testing
 
             var companyUsers = companyRepository.GetAll();
 
-            //foreach(var user in companyUsers)
-            //{
-            //    MessageBox.Show(user.Name + " " + user.CountryOfRegistration);
-            //}
-
             Assert.True(companyUsers.Any());
         }
     }

@@ -221,6 +221,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="Database\companies_data.json" />
+    <None Include="Database\companies_users_data.json" />
+    <None Include="Database\flights_data.json" />
+    <None Include="Database\passengers_data.json" />
+    <None Include="Database\planes_data.json" />
+    <None Include="Database\tickets_data.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

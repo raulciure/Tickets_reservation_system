@@ -67,19 +67,26 @@ namespace Tickets_reservation_system.Views
         {
             if (dataGridView1.CurrentRow != null) // if a row is selected
             {
-                // Get flight number cell value from dataGridView selected row
-                Flight selectedFlight = controller.GetFlight(dataGridView1.CurrentRow.Cells[6].Value.ToString());
-
-                if (selectedFlight != null)
+                try
                 {
-                    Form f = new UpdateFlightView(selectedFlight, logedInCompany);
+                    // Get flight number cell value from dataGridView selected row
+                    Flight selectedFlight = controller.GetFlight(dataGridView1.CurrentRow.Cells[6].Value.ToString());
 
-                    var status = f.ShowDialog();
-                    if (status == DialogResult.OK) LoadData();
+                    if (selectedFlight != null)
+                    {
+                        Form f = new UpdateFlightView(selectedFlight, logedInCompany);
+
+                        var status = f.ShowDialog();
+                        if (status == DialogResult.OK) LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No item selected!", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                else
+                catch (NullReferenceException)
                 {
-                    MessageBox.Show("No item selected!", "Selection error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No flights with the selected flight number found!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

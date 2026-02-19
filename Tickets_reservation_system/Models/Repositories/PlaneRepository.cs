@@ -24,7 +24,15 @@ namespace Tickets_reservation_system.Models.Repositories
 
         public List<Plane> DeserializeJson(string path)
         {
-            string jsonText = File.ReadAllText(path);
+            string jsonText;
+            try
+            {
+                jsonText = File.ReadAllText(path);
+            }
+            catch (FileNotFoundException)
+            {
+                return new List<Plane>();
+            }
 
             try
             {
