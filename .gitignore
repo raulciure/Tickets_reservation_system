@@ -398,5 +398,5 @@ FodyWeavers.xsd
 *.sln.iml
 
 # Ignore content of database folder
-Database/*
-!folder_name/.gitkeep
+Tickets_reservation_system/Database/*
+!Tickets_reservation_system/Database/.gitkeep
